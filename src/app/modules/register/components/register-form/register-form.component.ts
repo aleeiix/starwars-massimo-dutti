@@ -21,15 +21,15 @@ export class RegisterFormComponent {
   @Input() registerForm: FormGroup;
   @Output() register: EventEmitter<void> = new EventEmitter();
 
-  passwordIsVisible: boolean = false;
+  passwordIsVisible = false;
 
   constructor() {}
 
-  togglePasswordIsVisible() {
+  togglePasswordIsVisible(): void {
     this.passwordIsVisible = !this.passwordIsVisible;
   }
 
-  submit() {
+  submit(): void {
     if (this.registerForm.valid) {
       this.register.emit();
     }

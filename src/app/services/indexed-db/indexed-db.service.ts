@@ -22,7 +22,7 @@ export class IndexedDBService {
 
         const transaction = db.transaction(this.nameTableUsers, 'readwrite');
 
-        transaction.oncomplete = (event) => {
+        transaction.oncomplete = () => {
           console.log('[Transaction] ALL DONE!');
         };
 
@@ -46,7 +46,7 @@ export class IndexedDBService {
           }
         };
 
-        requestUser.onerror = (event: any) => {
+        requestUser.onerror = () => {
           reject('Error interno, pruebe mas tarde');
         };
 
@@ -61,7 +61,7 @@ export class IndexedDBService {
       environment.local_db_version
     );
 
-    connection.onerror = (event: any) => {
+    connection.onerror = () => {
       reject('Error interno, pruebe mas tarde');
     };
 
@@ -74,7 +74,7 @@ export class IndexedDBService {
     return connection;
   }
 
-  private createSchemaIfNotExist(db: IDBDatabase) {
+  private createSchemaIfNotExist(db: IDBDatabase): void {
     if (!db.objectStoreNames.contains(this.nameTableUsers)) {
       db.createObjectStore(this.nameTableUsers, {
         keyPath: 'email'

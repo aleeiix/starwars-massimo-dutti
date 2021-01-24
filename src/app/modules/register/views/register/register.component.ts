@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
     this.buildForm();
   }
 
-  buildForm() {
+  buildForm(): void {
     this.registerForm = new FormGroup({
       role: new FormControl(RoleEnum.CLIENT, [Validators.required]),
       name: new FormControl('', [Validators.required]),
@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  register() {
+  register(): void {
     this.registerService.createUser(this.registerForm.value).subscribe(
       (res) => {
         alert('Gracias por registrarte');
