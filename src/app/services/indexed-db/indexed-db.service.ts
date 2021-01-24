@@ -8,6 +8,7 @@ import { Register } from '@models/register.interface';
 })
 export class IndexedDBService {
   private readonly nameTableUsers = 'users';
+  private readonly internalErrorMessage = this.internalErrorMessage;
 
   constructor() {}
 
@@ -28,7 +29,7 @@ export class IndexedDBService {
 
         requestUser.onsuccess = () => {
           if (requestUser.result) {
-            reject('El email insertado ya existe');
+            reject('El email insertado ya existe.');
           } else {
             const addUserRequest = usersStore.add(newUser);
 
@@ -37,13 +38,13 @@ export class IndexedDBService {
             };
 
             addUserRequest.onerror = () => {
-              reject('Error interno, pruebe mas tarde');
+              reject(this.internalErrorMessage);
             };
           }
         };
 
         requestUser.onerror = () => {
-          reject('Error interno, pruebe mas tarde');
+          reject(this.internalErrorMessage);
         };
 
         db.close();
@@ -71,7 +72,7 @@ export class IndexedDBService {
         };
 
         requestUser.onerror = () => {
-          reject('Error interno, pruebe mas tarde');
+          reject(this.internalErrorMessage);
         };
 
         db.close();
@@ -86,7 +87,7 @@ export class IndexedDBService {
     );
 
     connection.onerror = () => {
-      reject('Error interno, pruebe mas tarde');
+      reject(this.internalErrorMessage);
     };
 
     connection.onupgradeneeded = (event: any) => {

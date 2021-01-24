@@ -3,6 +3,10 @@
 </header>
 
 <section>
+  <div *ngIf="registerError" class="error">
+    <mat-error>{{ registerError }}</mat-error>
+  </div>
+
   <md-register-form
     [registerForm]="registerForm"
     (register)="register()"

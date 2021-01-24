@@ -11,6 +11,7 @@ import { LoginService } from './login.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent implements OnInit {
+  loginError: string;
   loginForm: FormGroup;
 
   constructor(private router: Router, private loginService: LoginService) {}
@@ -33,11 +34,12 @@ export class LoginComponent implements OnInit {
           alert('Sesión iniciada');
           this.router.navigate(['/starships']);
         } else {
-          alert('El correo electrónico y/o contraseña no es correcto');
+          this.loginError =
+            'El correo electrónico y/o contraseña no es correcto.';
         }
       },
       (err) => {
-        alert(err);
+        this.loginError = err;
       }
     );
   }

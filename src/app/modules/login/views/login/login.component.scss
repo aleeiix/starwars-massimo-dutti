@@ -11,6 +11,10 @@ header {
 section {
   padding: 1.2rem;
 
+  div.error {
+    margin-bottom: 1rem;
+  }
+
   a {
     color: $primary-color;
     text-decoration: none;

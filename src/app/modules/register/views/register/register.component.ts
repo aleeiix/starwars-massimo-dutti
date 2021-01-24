@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RegisterComponent implements OnInit {
+  registerError: string;
   registerForm: FormGroup;
 
   constructor(
@@ -45,7 +46,7 @@ export class RegisterComponent implements OnInit {
         this.router.navigate(['/login']);
       },
       (err) => {
-        alert(err);
+        this.registerError = err;
       }
     );
   }

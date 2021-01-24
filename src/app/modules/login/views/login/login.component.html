@@ -6,6 +6,10 @@
 </header>
 
 <section>
+  <div *ngIf="loginError" class="error">
+    <mat-error>{{ loginError }}</mat-error>
+  </div>
+
   <md-login-form [loginForm]="loginForm" (login)="login()"></md-login-form>
 
   <p class="text-align--center">
