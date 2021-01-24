@@ -8,7 +8,7 @@ import { Register } from '@models/register.interface';
 })
 export class IndexedDBService {
   private readonly nameTableUsers = 'users';
-  private readonly internalErrorMessage = this.internalErrorMessage;
+  private readonly internalErrorMessage = 'Error interno, pruebe mas tarde.';
 
   constructor() {}
 

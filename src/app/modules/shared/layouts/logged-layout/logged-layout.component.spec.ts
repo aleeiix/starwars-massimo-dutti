@@ -1,6 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterTestingModule } from '@angular/router/testing';
+
 import { LoggedLayoutComponent } from './logged-layout.component';
+import { HeaderComponent } from './../../components/header/header.component';
 
 describe('LoggedLayoutComponent', () => {
   let component: LoggedLayoutComponent;
@@ -8,7 +14,13 @@ describe('LoggedLayoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [LoggedLayoutComponent]
+      declarations: [LoggedLayoutComponent, HeaderComponent],
+      imports: [
+        RouterTestingModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatIconModule
+      ]
     }).compileComponents();
   });
 
