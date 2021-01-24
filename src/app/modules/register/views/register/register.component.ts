@@ -1,3 +1,4 @@
+import { RegisterService } from './register.service';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -17,7 +18,7 @@ import { RoleEnum } from './../../../../models/role.enum';
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
 
-  constructor() {}
+  constructor(private registerService: RegisterService) {}
 
   ngOnInit(): void {
     this.buildForm();
@@ -37,6 +38,13 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
-    alert('REGISTRO');
+    this.registerService.createUser(this.registerForm.value).subscribe(
+      (res) => {
+        alert('Gracias por registrarte');
+      },
+      (err) => {
+        alert(err);
+      }
+    );
   }
 }
