@@ -17,15 +17,16 @@ export class AuthService {
 
   constructor(private indexedDBService: IndexedDBService) {}
 
-  createUser(newUser: Register): Observable<boolean> {
-    // TODO: Encriptar password
+  createUser(register: Register): Observable<boolean> {
+    const newUser = { ...register, password: this.encrypt(register.password) };
+
     return from(this.indexedDBService.addUser(newUser));
   }
 
   login(login: Login): Observable<boolean> {
     return from(this.indexedDBService.getUserByEmail(login.email)).pipe(
       map((user) => {
-        if (user && user.password === login.password) {
+        if (user && user.password === this.encrypt(login.password)) {
           const { password, ...rest } = user;
 
           this.setUserLogged(rest);
@@ -44,11 +45,18 @@ export class AuthService {
 
   private setUserLogged(user: User): void {
     this.userLogged = user;
-    localStorage.setItem(this.keyLocalStorage, btoa(JSON.stringify(user)));
+    localStorage.setItem(
+      this.keyLocalStorage,
+      this.encrypt(JSON.stringify(user))
+    );
   }
 
   private removeUserLogged(): void {
     this.userLogged = null;
     localStorage.removeItem(this.keyLocalStorage);
+  }
+
+  private encrypt(text: string): string {
+    return btoa(text);
   }
 }
