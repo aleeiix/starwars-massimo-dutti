@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       (res) => {
         if (res) {
           alert('Sesión iniciada');
-          // this.router.navigate(['/starships']);
+          this.router.navigate(['/starships']);
         } else {
           alert('El correo electrónico y/o contraseña no es correcto');
         }
