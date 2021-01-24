@@ -10,6 +10,11 @@ body {
   font-family: Roboto, 'Helvetica Neue', sans-serif;
 }
 
+a {
+  text-decoration: none !important;
+  color: $dark-text !important;
+}
+
 .w--100 {
   width: 100%;
 }
@@ -24,4 +29,8 @@ body {
 
 .color--primary {
   color: $primary-color;
+}
+
+.cursor--pointer {
+  cursor: pointer;
 }

@@ -11,6 +11,8 @@ import { User } from './../../models/user.interface';
   providedIn: 'root'
 })
 export class AuthService {
+  private readonly keyLocalStorage = 'auth';
+
   userLogged: User;
 
   constructor(private indexedDBService: IndexedDBService) {}
@@ -36,8 +38,17 @@ export class AuthService {
     );
   }
 
+  logout(): void {
+    this.removeUserLogged();
+  }
+
   private setUserLogged(user: User): void {
     this.userLogged = user;
-    localStorage.setItem('auth', btoa(JSON.stringify(user)));
+    localStorage.setItem(this.keyLocalStorage, btoa(JSON.stringify(user)));
+  }
+
+  private removeUserLogged(): void {
+    this.userLogged = null;
+    localStorage.removeItem(this.keyLocalStorage);
   }
 }

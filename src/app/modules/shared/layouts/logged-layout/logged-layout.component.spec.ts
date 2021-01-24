@@ -8,9 +8,8 @@ describe('LoggedLayoutComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoggedLayoutComponent ]
-    })
-    .compileComponents();
+      declarations: [LoggedLayoutComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {
