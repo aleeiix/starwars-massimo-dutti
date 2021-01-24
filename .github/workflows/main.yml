@@ -1,4 +1,4 @@
-name: ci/cd
+name: ci-cd
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [master]
 
 jobs:
-  ci/cd:
+  ci-cd:
     runs-on: ${{ matrix.os }}
 
     strategy:
