@@ -59,4 +59,36 @@ describe('RegisterFormComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should change passwordIsVisible to opposite', () => {
+    const oppositePasswordIsVisible = !component.passwordIsVisible;
+
+    component.togglePasswordIsVisible();
+
+    expect(component.passwordIsVisible).toEqual(oppositePasswordIsVisible);
+  });
+
+  it('should invalid submit because invalid form', () => {
+    spyOn(component.register, 'emit');
+
+    component.submit();
+
+    expect(component.register.emit).toHaveBeenCalledTimes(0);
+  });
+
+  it('should submit because valid form', () => {
+    spyOn(component.register, 'emit');
+
+    component.registerForm.setValue({
+      role: RoleEnum.CLIENT,
+      name: 'Test',
+      lastname: 'Test',
+      email: 'test@email.com',
+      password: 'Test-1234'
+    });
+
+    component.submit();
+
+    expect(component.register.emit).toHaveBeenCalledTimes(1);
+  });
 });

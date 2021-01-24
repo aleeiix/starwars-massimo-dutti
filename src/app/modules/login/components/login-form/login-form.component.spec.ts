@@ -45,4 +45,33 @@ describe('LoginFormComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should change passwordIsVisible to opposite', () => {
+    const oppositePasswordIsVisible = !component.passwordIsVisible;
+
+    component.togglePasswordIsVisible();
+
+    expect(component.passwordIsVisible).toEqual(oppositePasswordIsVisible);
+  });
+
+  it('should invalid submit because invalid form', () => {
+    spyOn(component.login, 'emit');
+
+    component.submit();
+
+    expect(component.login.emit).toHaveBeenCalledTimes(0);
+  });
+
+  it('should submit because valid form', () => {
+    spyOn(component.login, 'emit');
+
+    component.loginForm.setValue({
+      email: 'test@email.com',
+      password: 'Test-1234'
+    });
+
+    component.submit();
+
+    expect(component.login.emit).toHaveBeenCalledTimes(1);
+  });
 });

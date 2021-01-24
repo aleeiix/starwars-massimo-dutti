@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class LoginService {
   constructor(private authService: AuthService) {}
 
-  login(login: Login): Observable<any> {
+  login(login: Login): Observable<boolean> {
     return this.authService.login(login);
   }
 }
