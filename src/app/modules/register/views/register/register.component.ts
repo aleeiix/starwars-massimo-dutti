@@ -2,12 +2,9 @@ import { RegisterService } from './register.service';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import {
-  emailValidator,
-  strongPasswordValdiator
-} from './../../../../utils/validations';
+import { emailValidator, strongPasswordValdiator } from '@utils/validations';
 
-import { RoleEnum } from './../../../../models/role.enum';
+import { RoleEnum } from '@models/role.enum';
 import { Router } from '@angular/router';
 
 @Component({

@@ -7,7 +7,7 @@ import {
   Output
 } from '@angular/core';
 
-import { RoleEnum } from './../../../../models/role.enum';
+import { RoleEnum } from '@models/role.enum';
 
 @Component({
   selector: 'md-register-form',

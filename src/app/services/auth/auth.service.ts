@@ -3,9 +3,9 @@ import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { IndexedDBService } from './../indexed-db/indexed-db.service';
-import { Register } from '../../models/register.interface';
-import { Login } from './../../models/login.interface';
-import { User } from './../../models/user.interface';
+import { Register } from '@models/register.interface';
+import { Login } from '@models/login.interface';
+import { User } from '@models/user.interface';
 
 @Injectable({
   providedIn: 'root'

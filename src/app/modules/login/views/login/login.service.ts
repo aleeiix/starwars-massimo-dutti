@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { AuthService } from './../../../../services/auth/auth.service';
-import { Login } from './../../../../models/login.interface';
+import { AuthService } from '@services/auth/auth.service';
+import { Login } from '@models/login.interface';
 import { Observable } from 'rxjs';
 
 @Injectable({

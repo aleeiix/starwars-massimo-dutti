@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { environment } from 'src/environments/environment';
-import { Register } from './../../models/register.interface';
+import { Register } from '@models/register.interface';
 
 @Injectable({
   providedIn: 'root'
