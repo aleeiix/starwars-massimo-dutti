@@ -1,1 +1,14 @@
-<p>register works!</p>
+<header>
+  <h3>Crear cuenta</h3>
+</header>
+
+<section>
+  <md-register-form
+    [registerForm]="registerForm"
+    (register)="register()"
+  ></md-register-form>
+
+  <button mat-stroked-button class="w--100 border-radius--0">
+    Iniciar sesión
+  </button>
+</section>
