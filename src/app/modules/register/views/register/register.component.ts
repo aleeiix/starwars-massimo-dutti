@@ -8,6 +8,7 @@ import {
 } from './../../../../utils/validations';
 
 import { RoleEnum } from './../../../../models/role.enum';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'md-register',
@@ -18,7 +19,10 @@ import { RoleEnum } from './../../../../models/role.enum';
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
 
-  constructor(private registerService: RegisterService) {}
+  constructor(
+    private router: Router,
+    private registerService: RegisterService
+  ) {}
 
   ngOnInit(): void {
     this.buildForm();
@@ -41,6 +45,7 @@ export class RegisterComponent implements OnInit {
     this.registerService.createUser(this.registerForm.value).subscribe(
       (res) => {
         alert('Gracias por registrarte');
+        this.router.navigate(['/login']);
       },
       (err) => {
         alert(err);

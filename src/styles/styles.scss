@@ -1,3 +1,4 @@
+@import './variables.scss';
 @import './material.scss';
 
 html,
@@ -15,4 +16,12 @@ body {
 
 .border-radius--0 {
   border-radius: 0 !important;
+}
+
+.text-align--center {
+  text-align: center;
+}
+
+.color--primary {
+  color: $primary-color;
 }

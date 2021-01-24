@@ -11,6 +11,8 @@
 @import 'https://fonts.googleapis.com/css?family=Material+Icons';
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
 
+@import './variables.scss';
+
 $fontConfig: (
   display-4: mat-typography-level(112px, 112px, 300, 'Roboto', -0.0134em),
   display-3: mat-typography-level(56px, 56px, 400, 'Roboto', -0.0089em),
@@ -30,7 +32,7 @@ $fontConfig: (
 // Foreground Elements
 
 // Light Theme Text
-$dark-text: #000000;
+$dark-text: $dark-color;
 $dark-primary-text: rgba($dark-text, 0.87);
 $dark-accent-text: rgba($dark-primary-text, 0.54);
 $dark-disabled-text: rgba($dark-primary-text, 0.38);
@@ -38,13 +40,13 @@ $dark-dividers: rgba($dark-primary-text, 0.12);
 $dark-focused: rgba($dark-primary-text, 0.12);
 
 $mat-light-theme-foreground: (
-  base: black,
+  base: $dark-color,
   divider: $dark-dividers,
   dividers: $dark-dividers,
   disabled: $dark-disabled-text,
   disabled-button: rgba($dark-text, 0.26),
   disabled-text: $dark-disabled-text,
-  elevation: black,
+  elevation: $dark-color,
   secondary-text: $dark-accent-text,
   hint-text: $dark-disabled-text,
   accent-text: $dark-accent-text,
@@ -57,7 +59,7 @@ $mat-light-theme-foreground: (
 );
 
 // Dark Theme text
-$light-text: #ffffff;
+$light-text: $light-color;
 $light-primary-text: $light-text;
 $light-accent-text: rgba($light-primary-text, 0.7);
 $light-disabled-text: rgba($light-primary-text, 0.5);
@@ -71,7 +73,7 @@ $mat-dark-theme-foreground: (
   disabled: $light-disabled-text,
   disabled-button: rgba($light-text, 0.3),
   disabled-text: $light-disabled-text,
-  elevation: black,
+  elevation: $dark-color,
   hint-text: $light-disabled-text,
   secondary-text: $light-accent-text,
   accent-text: $light-accent-text,
@@ -85,15 +87,15 @@ $mat-dark-theme-foreground: (
 
 // Background config
 // Light bg
-$light-background: #ffffff;
+$light-background: $light-color;
 $light-bg-darker-5: darken($light-background, 5%);
 $light-bg-darker-10: darken($light-background, 10%);
 $light-bg-darker-20: darken($light-background, 20%);
 $light-bg-darker-30: darken($light-background, 30%);
 $light-bg-lighter-5: lighten($light-background, 5%);
-$dark-bg-tooltip: lighten(#000000, 20%);
-$dark-bg-alpha-4: rgba(#000000, 0.04);
-$dark-bg-alpha-12: rgba(#000000, 0.12);
+$dark-bg-tooltip: lighten($dark-color, 20%);
+$dark-bg-alpha-4: rgba($dark-color, 0.04);
+$dark-bg-alpha-12: rgba($dark-color, 0.12);
 
 $mat-light-theme-background: (
   background: $light-background,
@@ -114,13 +116,13 @@ $mat-light-theme-background: (
 );
 
 // Dark bg
-$dark-background: #000000;
+$dark-background: $dark-color;
 $dark-bg-lighter-5: lighten($dark-background, 5%);
 $dark-bg-lighter-10: lighten($dark-background, 10%);
 $dark-bg-lighter-20: lighten($dark-background, 20%);
 $dark-bg-lighter-30: lighten($dark-background, 30%);
-$light-bg-alpha-4: rgba(#ffffff, 0.04);
-$light-bg-alpha-12: rgba(#ffffff, 0.12);
+$light-bg-alpha-4: rgba($light-color, 0.04);
+$light-bg-alpha-12: rgba($light-color, 0.12);
 
 // Background palette for dark themes.
 $mat-dark-theme-background: (
@@ -147,19 +149,19 @@ $mat-dark-theme-background: (
 // Theme Config
 
 body {
-  --primary-color: #000000;
-  --primary-lighter-color: #b3b3b3;
-  --primary-darker-color: #000000;
+  --primary-color: $primary-color;
+  --primary-lighter-color: $primary-lighter-color;
+  --primary-darker-color: $primary-color;
   --text-primary-color: #{$light-primary-text};
   --text-primary-lighter-color: #{$dark-primary-text};
   --text-primary-darker-color: #{$light-primary-text};
 }
 
 $mat-primary: (
-  main: #000000,
-  lighter: #b3b3b3,
-  darker: #000000,
-  200: #000000,
+  main: $primary-color,
+  lighter: $primary-lighter-color,
+  darker: $primary-color,
+  200: $primary-200-color,
   // For slide toggle,
   contrast:
     (
@@ -171,19 +173,19 @@ $mat-primary: (
 $theme-primary: mat-palette($mat-primary, main, lighter, darker);
 
 body {
-  --accent-color: #ffffff;
-  --accent-lighter-color: #ffffff;
-  --accent-darker-color: #ffffff;
+  --accent-color: $accent-color;
+  --accent-lighter-color: $accent-color;
+  --accent-darker-color: $accent-color;
   --text-accent-color: #{$dark-primary-text};
   --text-accent-lighter-color: #{$dark-primary-text};
   --text-accent-darker-color: #{$dark-primary-text};
 }
 
 $mat-accent: (
-  main: #ffffff,
-  lighter: #ffffff,
-  darker: #ffffff,
-  200: #ffffff,
+  main: $accent-color,
+  lighter: $accent-color,
+  darker: $accent-color,
+  200: $accent-color,
   // For slide toggle,
   contrast:
     (
@@ -195,19 +197,19 @@ $mat-accent: (
 $theme-accent: mat-palette($mat-accent, main, lighter, darker);
 
 body {
-  --warn-color: #fa3b2c;
-  --warn-lighter-color: #fec4c0;
-  --warn-darker-color: #f8261b;
+  --warn-color: $warn-color;
+  --warn-lighter-color: $warn-lighter-color;
+  --warn-darker-color: $warn-darker-color;
   --text-warn-color: #{$light-primary-text};
   --text-warn-lighter-color: #{$dark-primary-text};
   --text-warn-darker-color: #{$light-primary-text};
 }
 
 $mat-warn: (
-  main: #fa3b2c,
-  lighter: #fec4c0,
-  darker: #f8261b,
-  200: #fa3b2c,
+  main: $warn-color,
+  lighter: $warn-lighter-color,
+  darker: $warn-darker-color,
+  200: $warn-color,
   // For slide toggle,
   contrast:
     (
@@ -254,7 +256,7 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
 }
 
 .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
-  border-color: $dark-text;
+  border-color: $primary-color;
 }
 
 .mat-radio-button.mat-accent .mat-radio-inner-circle,
@@ -263,7 +265,7 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
   .mat-ripple-element:not(.mat-radio-persistent-ripple),
 .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple,
 .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
-  background-color: $dark-text;
+  background-color: $primary-color;
 }
 
 .mat-form-field-subscript-wrapper {

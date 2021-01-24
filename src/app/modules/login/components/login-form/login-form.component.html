@@ -1,0 +1,47 @@
+<form [formGroup]="loginForm">
+  <div class="separator">
+    <mat-form-field class="w--100" appearance="outline">
+      <mat-label>Email</mat-label>
+      <input type="text" matInput formControlName="email" />
+      <mat-error *ngIf="loginForm.get('email').hasError('required')"
+        >Debe rellear este campo</mat-error
+      >
+    </mat-form-field>
+  </div>
+
+  <div class="separator">
+    <mat-form-field class="w--100" appearance="outline">
+      <mat-label>Contraseña</mat-label>
+      <input
+        [type]="passwordIsVisible ? 'text' : 'password'"
+        matInput
+        formControlName="password"
+      />
+      <button
+        mat-button
+        matSuffix
+        mat-icon-button
+        (click)="togglePasswordIsVisible()"
+      >
+        <mat-icon>{{
+          passwordIsVisible ? 'visibility_off' : 'visibility'
+        }}</mat-icon>
+      </button>
+      <mat-error *ngIf="loginForm.get('password').hasError('required')"
+        >Debe rellear este campo</mat-error
+      >
+    </mat-form-field>
+  </div>
+
+  <div class="separator--xl">
+    <button
+      mat-flat-button
+      color="primary"
+      [disabled]="loginForm.invalid"
+      (click)="submit()"
+      class="w--100 border-radius--0"
+    >
+      Iniciar Sesión
+    </button>
+  </div>
+</form>

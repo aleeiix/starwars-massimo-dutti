@@ -1,0 +1,26 @@
+@import './../../../../../styles/variables.scss';
+
+header {
+  padding: 1.2rem;
+
+  h3 {
+    text-align: center;
+  }
+}
+
+section {
+  padding: 1.2rem;
+
+  a {
+    color: $primary-color;
+    text-decoration: none;
+    border-bottom: 1px solid;
+  }
+}
+
+@media (min-width: 768px) {
+  section {
+    max-width: 768px;
+    margin: auto;
+  }
+}

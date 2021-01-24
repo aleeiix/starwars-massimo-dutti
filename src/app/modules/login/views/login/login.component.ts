@@ -1,12 +1,44 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'md-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginComponent implements OnInit {
-  constructor() {}
+  loginForm: FormGroup;
 
-  ngOnInit(): void {}
+  constructor(private router: Router, private loginService: LoginService) {}
+
+  ngOnInit(): void {
+    this.buildForm();
+  }
+
+  buildForm(): void {
+    this.loginForm = new FormGroup({
+      email: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required])
+    });
+  }
+
+  login(): void {
+    this.loginService.login(this.loginForm.value).subscribe(
+      (res) => {
+        if (res) {
+          alert('Sesión iniciada');
+          // this.router.navigate(['/starships']);
+        } else {
+          alert('El correo electrónico y/o contraseña no es correcto');
+        }
+      },
+      (err) => {
+        alert(err);
+      }
+    );
+  }
 }

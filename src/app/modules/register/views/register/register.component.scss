@@ -6,6 +6,7 @@ header {
     margin: 0;
   }
 }
+
 section {
   padding: 1.2rem;
 }
@@ -13,5 +14,6 @@ section {
 @media (min-width: 768px) {
   section {
     max-width: 768px;
+    margin: auto;
   }
 }

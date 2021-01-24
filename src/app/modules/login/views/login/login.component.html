@@ -1,1 +1,15 @@
-<p>login works!</p>
+<header>
+  <h3>Iniciar Sesión</h3>
+  <p class="text-align--center">
+    Introduzca su correo y contraseña para acceder
+  </p>
+</header>
+
+<section>
+  <md-login-form [loginForm]="loginForm" (login)="login()"></md-login-form>
+
+  <p class="text-align--center">
+    ¿Aún no tienes una cuenta?
+    <a class="color--primary" routerLink="/register">Regístrate</a>
+  </p>
+</section>

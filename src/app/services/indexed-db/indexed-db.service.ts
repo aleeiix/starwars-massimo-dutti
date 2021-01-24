@@ -22,10 +22,6 @@ export class IndexedDBService {
 
         const transaction = db.transaction(this.nameTableUsers, 'readwrite');
 
-        transaction.oncomplete = () => {
-          console.log('[Transaction] ALL DONE!');
-        };
-
         const usersStore = transaction.objectStore(this.nameTableUsers);
 
         const requestUser = usersStore.get(newUser.email);
@@ -44,6 +40,34 @@ export class IndexedDBService {
               reject('Error interno, pruebe mas tarde');
             };
           }
+        };
+
+        requestUser.onerror = () => {
+          reject('Error interno, pruebe mas tarde');
+        };
+
+        db.close();
+      };
+    });
+  }
+
+  getUserByEmail(email: string): Promise<Register> {
+    return new Promise((resolve, reject) => {
+      const connection: IDBOpenDBRequest = this.getConnection(reject);
+
+      connection.onsuccess = (event: any) => {
+        const db: IDBDatabase = event.target.result;
+
+        this.createSchemaIfNotExist(db);
+
+        const transaction = db.transaction(this.nameTableUsers, 'readonly');
+
+        const usersStore = transaction.objectStore(this.nameTableUsers);
+
+        const requestUser = usersStore.get(email);
+
+        requestUser.onsuccess = () => {
+          resolve(requestUser.result);
         };
 
         requestUser.onerror = () => {

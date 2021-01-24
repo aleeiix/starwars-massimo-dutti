@@ -1,0 +1,14 @@
+form {
+  div.separator {
+    margin-bottom: 0.4rem;
+
+    &--xl {
+      margin-bottom: 1.8rem;
+    }
+  }
+
+  mat-radio-button {
+    margin-right: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+}
