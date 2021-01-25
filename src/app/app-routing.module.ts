@@ -1,6 +1,9 @@
-import { LoggedLayoutComponent } from './modules/shared/layouts/logged-layout/logged-layout.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+import { LoggedLayoutComponent } from './modules/shared/layouts/logged-layout/logged-layout.component';
+
+import { AuthGuard } from './modules/shared/guards/auth/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'starships', pathMatch: 'full' },
@@ -32,7 +35,8 @@ const routes: Routes = [
             (m) => m.StarshipDetailModule
           )
       }
-    ]
+    ],
+    canActivateChild: [AuthGuard]
   },
   {
     path: '**',
