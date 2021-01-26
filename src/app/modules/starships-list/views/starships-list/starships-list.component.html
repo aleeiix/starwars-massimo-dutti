@@ -1,1 +1,11 @@
-<p>starships-list works!</p>
+<section
+  infiniteScroll
+  [infiniteScrollDistance]="1"
+  [infiniteScrollThrottle]="10"
+  (scrolled)="onScroll()"
+>
+  <md-starship-card
+    *ngFor="let starship of starships$ | async"
+    [starship]="starship"
+  ></md-starship-card>
+</section>

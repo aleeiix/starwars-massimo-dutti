@@ -1,4 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { StarshipsListService } from './starships-list.service';
+
+import { Starship } from '@models/starship.interface';
 
 @Component({
   selector: 'md-starships-list',
@@ -7,7 +12,16 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StarshipsListComponent implements OnInit {
-  constructor() {}
+  starships$: Observable<Starship[]>;
 
-  ngOnInit(): void {}
+  constructor(private starshipsListService: StarshipsListService) {}
+
+  ngOnInit(): void {
+    this.starships$ = this.starshipsListService.starships$;
+    this.starshipsListService.getStarships();
+  }
+
+  onScroll(): void {
+    this.starshipsListService.getMoreStarships();
+  }
 }

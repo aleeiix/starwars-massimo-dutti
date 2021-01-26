@@ -1,0 +1,7 @@
+<img
+  class="w--100"
+  [src]="starship.image"
+  alt="Imagen {{ starship.name }}"
+  (error)="showImageNotFound($event)"
+/>
+<p>{{ starship.name }}</p>
