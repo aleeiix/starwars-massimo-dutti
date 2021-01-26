@@ -1,60 +1,58 @@
 @import './../../../../../styles/material.scss';
 
-header {
-  mat-toolbar {
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  div {
     display: flex;
-    justify-content: space-between;
+    flex: 1;
     align-items: center;
+    height: 100%;
 
-    div {
+    &.options {
+      justify-content: flex-end;
+    }
+    a {
       display: flex;
-      flex: 1;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      height: 100%;
+      width: 1.5rem;
+      height: 1.5rem;
+      padding: 0.5rem;
 
-      &.options {
-        justify-content: flex-end;
+      img {
+        width: 100%;
       }
-      a {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 1.5rem;
-        height: 1.5rem;
-        padding: 0.5rem;
 
-        img {
-          width: 100%;
-        }
+      mat-icon {
+        font-size: 1.8rem;
 
-        mat-icon {
-          font-size: 1.8rem;
-
-          &.mat-icon {
-            height: auto;
-            width: auto;
-          }
-        }
-
-        &.menu-icon {
-          display: block;
+        &.mat-icon {
           height: auto;
+          width: auto;
+        }
+      }
 
-          .menu-bar {
-            width: 100%;
-            height: 1px;
-            background: $dark-text;
-            margin: 3px auto 5px;
-            -webkit-transition: all 0.3s;
-            transition: all 0.3s;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            margin-right: 0;
+      &.menu-icon {
+        display: block;
+        height: auto;
 
-            &.menu-bar__middle {
-              width: 60%;
-            }
+        .menu-bar {
+          width: 100%;
+          height: 1px;
+          background: $dark-text;
+          margin: 3px auto 5px;
+          -webkit-transition: all 0.3s;
+          transition: all 0.3s;
+          -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+          margin-right: 0;
+
+          &.menu-bar__middle {
+            width: 60%;
           }
         }
       }
@@ -64,14 +62,8 @@ header {
 
 // Tablets
 @media (min-width: 768px) {
-  header {
-    background: red;
-  }
 }
 
 // Desktop
 @media (min-width: 1024) {
-  header {
-    background: red;
-  }
 }

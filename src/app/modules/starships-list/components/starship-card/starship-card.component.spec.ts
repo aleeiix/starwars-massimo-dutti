@@ -8,9 +8,8 @@ describe('StarshipCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StarshipCardComponent ]
-    })
-    .compileComponents();
+      declarations: [StarshipCardComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {
