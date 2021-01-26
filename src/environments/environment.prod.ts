@@ -1,3 +1,7 @@
 export const environment = {
-  production: true
+  production: true,
+  local_db_name: 'starwars-massimo-dutti',
+  local_db_version: 1,
+  api_url: 'https://swapi.dev/api',
+  image_not_found: 'assets/images/image-not-found.jpg'
 };

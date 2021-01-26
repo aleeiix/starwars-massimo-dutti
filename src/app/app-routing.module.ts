@@ -1,3 +1,4 @@
+import { NoAuthGuard } from './modules/shared/guards/no-auth/no-auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -8,14 +9,18 @@ import { AuthGuard } from './modules/shared/guards/auth/auth.guard';
 const routes: Routes = [
   { path: '', redirectTo: 'starships', pathMatch: 'full' },
   {
-    path: 'register',
-    loadChildren: () =>
-      import('./modules/register/register.module').then((m) => m.RegisterModule)
-  },
-  {
     path: 'login',
     loadChildren: () =>
-      import('./modules/login/login.module').then((m) => m.LoginModule)
+      import('./modules/login/login.module').then((m) => m.LoginModule),
+    canActivate: [NoAuthGuard]
+  },
+  {
+    path: 'register',
+    loadChildren: () =>
+      import('./modules/register/register.module').then(
+        (m) => m.RegisterModule
+      ),
+    canActivate: [NoAuthGuard]
   },
   {
     path: '',

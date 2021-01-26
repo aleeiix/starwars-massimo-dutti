@@ -1,19 +1,50 @@
 <mat-toolbar color="accent">
-  <div>
-    <a routerLink="/">
+  <div class="navbar__start">
+    <a class="logo-mobile icon" routerLink="/">
       <img src="assets/images/logo-mobile.svg" alt="Logo Massimo Dutti"
+    /></a>
+
+    <a
+      class="links-desktop font-family--bold"
+      routerLink="/"
+      routerLinkActive="active"
+      >NAVES</a
+    >
+
+    <a
+      class="links-desktop font-family--bold"
+      routerLink="/info"
+      routerLinkActive="active"
+      >INFORMACIÓN</a
+    >
+
+    <a
+      class="links-desktop font-family--bold"
+      routerLink="/admin"
+      routerLinkActive="active"
+      >ADMINISTRACIÓN</a
+    >
+  </div>
+
+  <div class="navbar__center">
+    <a routerLink="/">
+      <img src="assets/images/logo.png" alt="Logo Massimo Dutti"
     /></a>
   </div>
 
-  <div class="options cursor--pointer">
-    <a (click)="logoutEmit()">
+  <div class="navbar__end">
+    <a class="icon cursor--pointer logout__mobile" (click)="logoutEmit()">
       <mat-icon fontSet="material-icons-outlined">exit_to_app</mat-icon>
     </a>
 
-    <a class="menu-icon cursor--pointer">
+    <a class="icon menu-icon cursor--pointer">
       <div class="menu-bar menu-bar__top"></div>
       <div class="menu-bar menu-bar__middle"></div>
       <div class="menu-bar menu-bar__bottom"></div>
     </a>
+
+    <a class="cursor--pointer logout__desktop" (click)="logoutEmit()"
+      >Cerrar Sesión</a
+    >
   </div>
 </mat-toolbar>
