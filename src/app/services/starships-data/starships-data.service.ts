@@ -19,7 +19,7 @@ export class StarshipsDataService {
   getStarshipsList(page: number = 1): Observable<Pagination<Starship>> {
     return this.httpClient
       .get<Pagination<Starship>>(
-        `${environment.api_url}${this.resourceUrlApi}?page=${page}`
+        `${environment.api_url}${this.resourceUrlApi}/?page=${page}`
       )
       .pipe(
         map((pagination) => {
