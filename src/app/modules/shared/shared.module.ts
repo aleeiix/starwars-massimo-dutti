@@ -8,9 +8,10 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { LoggedLayoutComponent } from './layouts/logged-layout/logged-layout.component';
 import { HeaderComponent } from './components/header/header.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 @NgModule({
-  declarations: [LoggedLayoutComponent, HeaderComponent],
+  declarations: [LoggedLayoutComponent, HeaderComponent, SidenavComponent],
   imports: [
     CommonModule,
     RouterModule,

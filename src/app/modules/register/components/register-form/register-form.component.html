@@ -1,4 +1,4 @@
-<form [formGroup]="registerForm">
+<form [formGroup]="registerForm" (keydown.enter)="$event.preventDefault()">
   <mat-radio-group formControlName="role">
     <mat-radio-button [value]="RoleEnum.CLIENT">Cliente</mat-radio-button>
     <mat-radio-button [value]="RoleEnum.ADMIN">Administrador</mat-radio-button>
@@ -44,6 +44,7 @@
         [type]="passwordIsVisible ? 'text' : 'password'"
         matInput
         formControlName="password"
+        (keydown.enter)="submit()"
       />
       <button
         mat-button

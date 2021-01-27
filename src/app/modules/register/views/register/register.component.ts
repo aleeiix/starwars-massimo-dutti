@@ -1,5 +1,10 @@
 import { RegisterService } from './register.service';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { emailValidator, strongPasswordValdiator } from '@utils/validations';
@@ -19,6 +24,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private changeDetectionRef: ChangeDetectorRef,
     private registerService: RegisterService
   ) {}
 
@@ -47,6 +53,7 @@ export class RegisterComponent implements OnInit {
       },
       (err) => {
         this.registerError = err;
+        this.changeDetectionRef.markForCheck();
       }
     );
   }

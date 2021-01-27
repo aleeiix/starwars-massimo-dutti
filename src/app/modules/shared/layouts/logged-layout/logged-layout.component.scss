@@ -4,8 +4,21 @@ header {
   width: 100%;
   top: 0;
   left: 0;
+  z-index: 2;
 }
 
 main {
   margin-top: 64px;
+}
+
+md-sidenav {
+  div {
+    display: flex;
+    flex-direction: column;
+    padding: 3.5rem;
+
+    a {
+      margin: 0.6rem 0;
+    }
+  }
 }

@@ -4,21 +4,15 @@
       <img src="assets/images/logo-mobile.svg" alt="Logo Massimo Dutti"
     /></a>
 
-    <a
-      class="links-desktop font-family--bold"
-      routerLink="/starships"
-      routerLinkActive="active"
-      ro
-      >NAVES</a
-    >
-
-    <a
-      *ngIf="isAdmin"
-      class="links-desktop font-family--bold"
-      routerLink="/admin"
-      routerLinkActive="active"
-      >ADMINISTRACIÓN</a
-    >
+    <ng-container *ngFor="let route of routes">
+      <a
+        *ngIf="route.isVisible"
+        class="links-desktop font-family--bold"
+        [routerLink]="route.link"
+        routerLinkActive="active"
+        >{{ route.text }}</a
+      >
+    </ng-container>
   </div>
 
   <div class="navbar__center">
@@ -32,10 +26,22 @@
       <mat-icon fontSet="material-icons-outlined">exit_to_app</mat-icon>
     </a>
 
-    <a class="icon menu-icon cursor--pointer">
+    <a
+      class="icon menu-icon cursor--pointer"
+      (click)="toggleSideNavEmit()"
+      *ngIf="!sideNavIsOpen"
+    >
       <div class="menu-bar menu-bar__top"></div>
       <div class="menu-bar menu-bar__middle"></div>
       <div class="menu-bar menu-bar__bottom"></div>
+    </a>
+
+    <a
+      class="icon cursor--pointer"
+      (click)="toggleSideNavEmit()"
+      *ngIf="sideNavIsOpen"
+    >
+      <mat-icon fontSet="material-icons-outlined">close</mat-icon>
     </a>
 
     <a class="cursor--pointer logout__desktop" (click)="logoutEmit()"

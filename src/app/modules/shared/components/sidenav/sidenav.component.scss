@@ -1,0 +1,22 @@
+section {
+  display: flex;
+  position: fixed;
+  right: 0;
+  background: white;
+  width: 100%;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+}
+
+// Tablets
+@media (min-width: 768px) {
+  section {
+    width: 40%;
+  }
+}
+
+// Desktop
+@media (min-width: 1024px) {
+  section {
+    display: none;
+  }
+}

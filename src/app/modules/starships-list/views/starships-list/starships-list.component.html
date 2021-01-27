@@ -6,7 +6,7 @@
 >
   <a
     *ngFor="let starship of starships$ | async"
-    [routerLink]="'/starship/' + starship.id"
+    [routerLink]="['/starship', starship.id]"
   >
     <md-starship-card [starship]="starship"></md-starship-card>
   </a>

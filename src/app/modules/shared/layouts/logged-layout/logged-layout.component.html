@@ -1,7 +1,26 @@
 <header #header>
-  <md-header [isAdmin]="isAdmin" (logout)="logout()"></md-header>
+  <md-header
+    [sideNavIsOpen]="sideNavIsOpen"
+    (logout)="logout()"
+    (toggleSideNav)="toggleSideNav()"
+    [routes]="routes"
+  ></md-header>
 </header>
 
 <main>
   <router-outlet></router-outlet>
 </main>
+
+<md-sidenav [isOpen]="sideNavIsOpen" [top]="heightHeader">
+  <div>
+    <ng-container *ngFor="let route of routes">
+      <a
+        *ngIf="route.isVisible"
+        [routerLink]="route.link"
+        routerLinkActive="active"
+        (click)="toggleSideNav()"
+        >{{ route.text }}</a
+      >
+    </ng-container>
+  </div>
+</md-sidenav>

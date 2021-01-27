@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit
+} from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -14,7 +19,11 @@ export class LoginComponent implements OnInit {
   loginError: string;
   loginForm: FormGroup;
 
-  constructor(private router: Router, private loginService: LoginService) {}
+  constructor(
+    private router: Router,
+    private changeDetectionRef: ChangeDetectorRef,
+    private loginService: LoginService
+  ) {}
 
   ngOnInit(): void {
     this.buildForm();
@@ -36,6 +45,7 @@ export class LoginComponent implements OnInit {
         } else {
           this.loginError =
             'El correo electrónico y/o contraseña no es correcto.';
+          this.changeDetectionRef.markForCheck();
         }
       },
       (err) => {
