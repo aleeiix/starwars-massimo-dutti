@@ -43,19 +43,6 @@ export class AuthService {
     this.removeUserLogged();
   }
 
-  isUserLogged(): boolean {
-    if (!this.userLogged) {
-      const localStorageAuth = localStorage.getItem(this.keyLocalStorage);
-      if (localStorageAuth) {
-        this.userLogged = JSON.parse(this.decode(localStorageAuth));
-      } else {
-        return false;
-      }
-    }
-
-    return true;
-  }
-
   private setUserLogged(user: User): void {
     this.userLogged = user;
     localStorage.setItem(

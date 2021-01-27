@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { RoleEnum } from '@models/role.enum';
 
 import { AuthService } from '@services/auth/auth.service';
 
@@ -10,6 +11,10 @@ import { AuthService } from '@services/auth/auth.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoggedLayoutComponent implements OnInit {
+  get isAdmin(): boolean {
+    return this.authService.userLogged?.role === RoleEnum.ADMIN;
+  }
+
   constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {}

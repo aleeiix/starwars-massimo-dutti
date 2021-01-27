@@ -10,9 +10,10 @@ export class AuthGuard implements CanActivateChild {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivateChild(): boolean {
-    if (this.authService.isUserLogged()) {
+    if (this.authService.userLogged) {
       return true;
     } else {
+      // TODO: Mostrar snackbar de login
       this.router.navigate(['/login']);
       return false;
     }

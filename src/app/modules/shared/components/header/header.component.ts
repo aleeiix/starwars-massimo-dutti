@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
-  OnInit,
+  Input,
   Output
 } from '@angular/core';
 
@@ -12,12 +12,11 @@ import {
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
+  @Input() isAdmin: boolean;
   @Output() logout: EventEmitter<void> = new EventEmitter();
 
   constructor() {}
-
-  ngOnInit(): void {}
 
   logoutEmit(): void {
     this.logout.emit();

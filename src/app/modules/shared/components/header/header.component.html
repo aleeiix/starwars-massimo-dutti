@@ -12,13 +12,7 @@
     >
 
     <a
-      class="links-desktop font-family--bold"
-      routerLink="/info"
-      routerLinkActive="active"
-      >INFORMACIÓN</a
-    >
-
-    <a
+      *ngIf="isAdmin"
       class="links-desktop font-family--bold"
       routerLink="/admin"
       routerLinkActive="active"

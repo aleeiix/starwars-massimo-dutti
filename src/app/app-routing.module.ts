@@ -1,3 +1,4 @@
+import { AdminGuard } from './modules/shared/guards/admin/admin.guard';
 import { NoAuthGuard } from './modules/shared/guards/no-auth/no-auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -39,6 +40,12 @@ const routes: Routes = [
           import('./modules/starship-detail/starship-detail.module').then(
             (m) => m.StarshipDetailModule
           )
+      },
+      {
+        path: 'admin',
+        loadChildren: () =>
+          import('./modules/admin/admin.module').then((m) => m.AdminModule),
+        canActivate: [AdminGuard]
       }
     ],
     canActivateChild: [AuthGuard]
