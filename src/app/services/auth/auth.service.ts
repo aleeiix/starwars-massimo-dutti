@@ -43,6 +43,14 @@ export class AuthService {
     this.removeUserLogged();
   }
 
+  checkUserLogged(): void {
+    const localstorageData = localStorage.getItem(this.keyLocalStorage);
+    if (localstorageData) {
+      const userLocalStorage = JSON.parse(this.decode(localstorageData));
+      this.userLogged = userLocalStorage;
+    }
+  }
+
   private setUserLogged(user: User): void {
     this.userLogged = user;
     localStorage.setItem(
