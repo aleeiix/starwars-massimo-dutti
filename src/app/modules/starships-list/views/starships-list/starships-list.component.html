@@ -4,8 +4,10 @@
   [infiniteScrollThrottle]="10"
   (scrolled)="onScroll()"
 >
-  <md-starship-card
+  <a
     *ngFor="let starship of starships$ | async"
-    [starship]="starship"
-  ></md-starship-card>
+    [routerLink]="'/starship/' + starship.id"
+  >
+    <md-starship-card [starship]="starship"></md-starship-card>
+  </a>
 </section>
