@@ -5,20 +5,37 @@ import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { LoggedLayoutComponent } from './layouts/logged-layout/logged-layout.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { SpinnerInterceptorService } from './interceptors/spinner-interceptor/spinner-interceptor.service';
 
 @NgModule({
-  declarations: [LoggedLayoutComponent, HeaderComponent, SidenavComponent],
+  declarations: [
+    LoggedLayoutComponent,
+    HeaderComponent,
+    SidenavComponent,
+    SpinnerComponent
+  ],
   imports: [
     CommonModule,
     RouterModule,
     MatToolbarModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule
   ],
-  exports: [LoggedLayoutComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SpinnerInterceptorService,
+      multi: true
+    }
+  ],
+  exports: [LoggedLayoutComponent, SpinnerComponent]
 })
 export class SharedModule {}

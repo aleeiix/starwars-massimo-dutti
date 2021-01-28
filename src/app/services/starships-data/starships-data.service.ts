@@ -1,7 +1,7 @@
 import { map, tap } from 'rxjs/operators';
-import { Pagination } from './../../models/pagination.interface';
+import { Pagination } from '@models/pagination.interface';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
 
@@ -22,7 +22,10 @@ export class StarshipsDataService {
     private cacheService: CacheService
   ) {}
 
-  getStarshipsList(page: number = 1): Observable<Pagination<Starship>> {
+  getStarshipsList(
+    page: number = 1,
+    headers: HttpHeaders
+  ): Observable<Pagination<Starship>> {
     const starshipCache = this.cacheService.getData<Pagination<Starship>>(
       this.cacheKey,
       `page=${page}`
@@ -33,7 +36,8 @@ export class StarshipsDataService {
 
     return this.httpClient
       .get<Pagination<Starship>>(
-        `${environment.api_url}${this.resourceUrlApi}/?page=${page}`
+        `${environment.api_url}${this.resourceUrlApi}/?page=${page}`,
+        { headers }
       )
       .pipe(
         map((pagination) => {
@@ -55,7 +59,7 @@ export class StarshipsDataService {
       );
   }
 
-  getStarshipById(id: string): Observable<Starship> {
+  getStarshipById(id: string, headers: HttpHeaders): Observable<Starship> {
     const starshipCache = this.cacheService.getData<Starship>(
       this.cacheKey,
       id
@@ -66,7 +70,8 @@ export class StarshipsDataService {
 
     return this.httpClient
       .get<Partial<Starship>>(
-        `${environment.api_url}${this.resourceUrlApi}/${id}/`
+        `${environment.api_url}${this.resourceUrlApi}/${id}/`,
+        { headers }
       )
       .pipe(
         map((starship) => {

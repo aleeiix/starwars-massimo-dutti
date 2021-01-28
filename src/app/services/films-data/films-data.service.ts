@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
@@ -19,14 +19,17 @@ export class FilmsDataService {
     private cacheService: CacheService
   ) {}
 
-  getFilmById(id: string): Observable<Film> {
+  getFilmById(id: string, headers: HttpHeaders): Observable<Film> {
     const filmCache = this.cacheService.getData<Film>(this.cacheKey, id);
     if (filmCache) {
       return of(filmCache);
     }
 
     return this.httpClient
-      .get<Partial<Film>>(`${environment.api_url}${this.resourceUrlApi}/${id}/`)
+      .get<Partial<Film>>(
+        `${environment.api_url}${this.resourceUrlApi}/${id}/`,
+        { headers }
+      )
       .pipe(
         map((film) => {
           film.id = film.url.split('/').slice(-2)[0];

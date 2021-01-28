@@ -1,16 +1,27 @@
+import { tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { AuthService } from '@services/auth/auth.service';
 import { Login } from '@models/login.interface';
 import { Observable } from 'rxjs';
+import { SpinnerService } from '@modules/shared/components/spinner/spinner.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private spinnerService: SpinnerService
+  ) {}
 
   login(login: Login): Observable<boolean> {
-    return this.authService.login(login);
+    this.spinnerService.openLoading();
+
+    return this.authService.login(login).pipe(
+      tap(() => {
+        this.spinnerService.closeLoading();
+      })
+    );
   }
 }

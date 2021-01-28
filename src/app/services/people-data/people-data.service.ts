@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
@@ -19,7 +19,7 @@ export class PeopleDataService {
     private cacheService: CacheService
   ) {}
 
-  getPeopleById(id: string): Observable<People> {
+  getPeopleById(id: string, headers: HttpHeaders): Observable<People> {
     const peopleCache = this.cacheService.getData<People>(this.cacheKey, id);
     if (peopleCache) {
       return of(peopleCache);
@@ -27,7 +27,8 @@ export class PeopleDataService {
 
     return this.httpClient
       .get<Partial<People>>(
-        `${environment.api_url}${this.resourceUrlApi}/${id}/`
+        `${environment.api_url}${this.resourceUrlApi}/${id}/`,
+        { headers }
       )
       .pipe(
         map((people) => {
