@@ -1,34 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
-import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger
-} from '@angular/animations';
+import { Component, Input } from '@angular/core';
+
+import { sidenavAnimation } from '@utils/animations';
 
 @Component({
   selector: 'md-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss'],
-  animations: [
-    trigger('openClose', [
-      state(
-        'open',
-        style({
-          transform: 'translateX(101%)'
-        })
-      ),
-      state(
-        'closed',
-        style({
-          transform: 'translateX(0)'
-        })
-      ),
-      transition('open => closed', [animate('0.3s')]),
-      transition('closed => open', [animate('0.3s')])
-    ])
-  ]
+  animations: [sidenavAnimation]
 })
 export class SidenavComponent {
   @Input() isOpen: boolean;

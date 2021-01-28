@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit
+} from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { StarshipsListService } from './starships-list.service';
@@ -11,7 +16,7 @@ import { Starship } from '@models/starship.interface';
   styleUrls: ['./starships-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class StarshipsListComponent implements OnInit {
+export class StarshipsListComponent implements OnInit, OnDestroy {
   starships$: Observable<Starship[]>;
 
   constructor(private starshipsListService: StarshipsListService) {}
@@ -23,5 +28,9 @@ export class StarshipsListComponent implements OnInit {
 
   onScroll(): void {
     this.starshipsListService.getMoreStarships();
+  }
+
+  ngOnDestroy(): void {
+    this.starshipsListService.resetPages();
   }
 }

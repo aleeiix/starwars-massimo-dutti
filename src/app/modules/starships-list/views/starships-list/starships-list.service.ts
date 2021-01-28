@@ -44,4 +44,8 @@ export class StarshipsListService {
         });
     }
   }
+
+  resetPages(): void {
+    this.page = 1;
+  }
 }

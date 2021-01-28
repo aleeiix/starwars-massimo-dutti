@@ -1,4 +1,59 @@
 <section>
   <a routerLink="/starships">VOLVER</a>
-  <p>starship-detail works!</p>
+  <article *ngIf="starship">
+    <div>
+      <img
+        class="w--100"
+        [src]="starship.image"
+        alt="Imagen {{ starship.name }}"
+        (error)="showImageNotFound($event)"
+      />
+    </div>
+
+    <div>
+      <p>
+        <strong>{{ starship.name }}</strong>
+      </p>
+      <p>Modelo: {{ starship.model }}</p>
+      <p>Clase: {{ starship.starship_class }}</p>
+
+      <mat-accordion multi>
+        <mat-expansion-panel expanded="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title> Detalles </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>Coste: {{ starship.cost_in_credits }} créditos galácticos</p>
+          <p>Longitud: {{ starship.length }}</p>
+          <p>
+            Velocidad máxima en atmósfera: {{ starship.max_atmosphering_speed }}
+          </p>
+          <p>Tripulación: {{ starship.crew }}</p>
+          <p>Pasajeros: {{ starship.passengers }}</p>
+          <p>Capacidad de carga: {{ starship.cargo_capacity }} kg</p>
+          <p>Consumibles: {{ starship.consumables }}</p>
+          <p>Clase de hiperimpulsor: {{ starship.hyperdrive_rating }}</p>
+          <p>MGLT: {{ starship.MGLT }}</p>
+          <p>Fabricante: {{ starship.manufacturer }}</p>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel *ngIf="starship.pilots.length > 0">
+          <mat-expansion-panel-header>
+            <mat-panel-title> Pilotos </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <p *ngFor="let pilot of starship.pilots">{{ pilot.name }}</p>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel *ngIf="starship.films.length > 0">
+          <mat-expansion-panel-header>
+            <mat-panel-title> Películas </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <p *ngFor="let film of starship.films">
+            Episodio {{ film.episode_id }} - {{ film.title }}
+          </p>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </article>
 </section>

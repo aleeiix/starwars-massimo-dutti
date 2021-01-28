@@ -1,4 +1,6 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { StarshipDetailComponent } from './starship-detail.component';
 
@@ -8,7 +10,8 @@ describe('StarshipDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [StarshipDetailComponent]
+      declarations: [StarshipDetailComponent],
+      imports: [RouterTestingModule, HttpClientModule]
     }).compileComponents();
   });
 
