@@ -4,12 +4,8 @@ import { CommonModule } from '@angular/common';
 import { ExtraRoutingModule } from './extra-routing.module';
 import { ExtraComponent } from './views/extra/extra.component';
 
-
 @NgModule({
   declarations: [ExtraComponent],
-  imports: [
-    CommonModule,
-    ExtraRoutingModule
-  ]
+  imports: [CommonModule, ExtraRoutingModule]
 })
-export class ExtraModule { }
+export class ExtraModule {}

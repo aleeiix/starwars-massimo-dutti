@@ -39,8 +39,6 @@ export class StarshipDetailComponent implements OnInit, OnDestroy {
         )
       )
       .subscribe((starship) => {
-        console.log(starship);
-
         this.starship = starship;
         this.changeDetectorRef.markForCheck();
       });
@@ -51,8 +49,8 @@ export class StarshipDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // if (this.subscription) {
-    //   this.subscription.unsubscribe();
-    // }
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 }

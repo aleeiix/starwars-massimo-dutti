@@ -8,9 +8,8 @@ describe('ExtraComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ExtraComponent ]
-    })
-    .compileComponents();
+      declarations: [ExtraComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {
