@@ -27,9 +27,8 @@ export class AuthService {
     return from(this.indexedDBService.getUserByEmail(login.email)).pipe(
       map((user) => {
         if (user && user.password === this.encrypt(login.password)) {
-          const { password, ...rest } = user;
-
-          this.setUserLogged(rest);
+          delete user.password;
+          this.setUserLogged(user);
 
           return true;
         }
