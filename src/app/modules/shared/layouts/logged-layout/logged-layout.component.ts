@@ -29,6 +29,11 @@ export class LoggedLayoutComponent {
       isVisible: true
     },
     {
+      link: '/extra',
+      text: 'EXTRA',
+      isVisible: true
+    },
+    {
       link: '/admin',
       text: 'ADMINISTRACIÓN',
       isVisible: this.isAdmin
