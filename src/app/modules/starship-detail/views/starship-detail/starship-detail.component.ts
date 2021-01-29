@@ -23,7 +23,18 @@ import { Subscription } from 'rxjs';
 })
 export class StarshipDetailComponent implements OnInit, OnDestroy {
   subscription: Subscription;
+
   starship: Starship;
+
+  error = false;
+
+  get imageStyle(): { 'background-image': string } {
+    if (this.error) {
+      return { 'background-image': `url(${environment.image_not_found})` };
+    } else {
+      return { 'background-image': `url(${this.starship.image})` };
+    }
+  }
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -44,8 +55,8 @@ export class StarshipDetailComponent implements OnInit, OnDestroy {
       });
   }
 
-  showImageNotFound(event: { target: { src: string } }): void {
-    event.target.src = environment.image_not_found;
+  showImageNotFound(): void {
+    this.error = true;
   }
 
   ngOnDestroy(): void {

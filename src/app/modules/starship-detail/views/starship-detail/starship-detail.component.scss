@@ -4,29 +4,70 @@ section {
     margin: 0.6rem 1.5rem;
   }
 
+  div.starship-image {
+    width: 100%;
+    height: 18rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+
   p {
     text-align: center;
   }
 }
 
-// Tablets
-@media (min-width: 768px) {
+@media (min-width: 480px) {
   section {
     article {
-      display: flex;
-
-      div {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        padding: 0 1.5rem;
+      div.starship-image {
+        height: 26rem;
       }
     }
   }
 }
 
-// Desktop
+// // Tablets
+@media (min-width: 768px) {
+  section {
+    article {
+      display: flex;
+
+      div.starships-content {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        padding: 0 1.5rem;
+
+        div.starship-image {
+          height: 20rem;
+        }
+      }
+    }
+  }
+}
+
+// // Desktop
 @media (min-width: 1024px) {
   section {
+    article {
+      div.starships-content {
+        div.starship-image {
+          height: 28rem;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1500px) {
+  section {
+    article {
+      div.starships-content {
+        div.starship-image {
+          height: 37rem;
+        }
+      }
+    }
   }
 }

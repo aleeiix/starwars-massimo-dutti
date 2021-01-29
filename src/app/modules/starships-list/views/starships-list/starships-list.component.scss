@@ -5,7 +5,25 @@ section {
 
   a {
     flex: 0 calc(50% - 0.4rem);
-    height: 11rem;
+    height: 18rem;
     margin-bottom: 6rem;
+  }
+}
+
+// Tablets
+@media (min-width: 768px) {
+  section {
+    a {
+      height: 24rem;
+    }
+  }
+}
+
+// Desktop
+@media (min-width: 1024px) {
+  section {
+    a {
+      height: 30rem;
+    }
   }
 }

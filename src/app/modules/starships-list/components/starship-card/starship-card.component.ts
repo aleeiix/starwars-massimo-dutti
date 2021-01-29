@@ -18,11 +18,21 @@ import { Starship } from '@models/starship.interface';
 export class StarshipCardComponent implements OnInit {
   @Input() starship: Starship;
 
+  error = false;
+
+  get imageStyle(): { 'background-image': string } {
+    if (this.error) {
+      return { 'background-image': `url(${environment.image_not_found})` };
+    } else {
+      return { 'background-image': `url(${this.starship.image})` };
+    }
+  }
+
   constructor() {}
 
   ngOnInit(): void {}
 
-  showImageNotFound(event: { target: { src: string } }): void {
-    event.target.src = environment.image_not_found;
+  showImageNotFound(): void {
+    this.error = true;
   }
 }

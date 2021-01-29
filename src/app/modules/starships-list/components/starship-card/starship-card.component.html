@@ -1,7 +1,6 @@
-<img
-  class="w--100"
-  [src]="starship.image"
-  alt="Imagen {{ starship.name }}"
-  (error)="showImageNotFound($event)"
-/>
+<div
+  [ngClass]="{ 'starship-image': true, error: error }"
+  [ngStyle]="imageStyle"
+></div>
+<img [hidden]="true" [src]="starship.image" (error)="showImageNotFound()" />
 <p>{{ starship.name }}</p>

@@ -1,16 +1,19 @@
 <section>
   <a routerLink="/starships">VOLVER</a>
   <article *ngIf="starship">
-    <div>
+    <div class="starships-content">
+      <div
+        [ngClass]="{ 'starship-image': true, error: error }"
+        [ngStyle]="imageStyle"
+      ></div>
       <img
-        class="w--100"
+        [hidden]="true"
         [src]="starship.image"
-        alt="Imagen {{ starship.name }}"
-        (error)="showImageNotFound($event)"
+        (error)="showImageNotFound()"
       />
     </div>
 
-    <div>
+    <div class="starships-content">
       <p>
         <strong>{{ starship.name }}</strong>
       </p>
