@@ -1,5 +1,6 @@
+import { environment } from 'src/environments/environment';
 import { TestBed } from '@angular/core/testing';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { SnackbarService } from './snackbar.service';
 
@@ -15,5 +16,19 @@ describe('SnackbarService', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+  });
+
+  it('should run matSnackBar.open', () => {
+    const matSnackBar = TestBed.inject(MatSnackBar);
+
+    spyOn(matSnackBar, 'open');
+
+    service.openSnackBar('Test1', 'Test2');
+
+    expect(matSnackBar.open).toHaveBeenCalledWith('Test1', 'Test2', {
+      duration: environment.snackbar_time,
+      verticalPosition: 'top',
+      horizontalPosition: 'center'
+    });
   });
 });

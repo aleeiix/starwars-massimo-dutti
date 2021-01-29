@@ -45,6 +45,7 @@ export class AuthService {
   checkUserLogged(): void {
     const localstorageData = localStorage.getItem(this.keyLocalStorage);
     if (localstorageData) {
+      console.log(localstorageData);
       const userLocalStorage = JSON.parse(this.decode(localstorageData));
       this.userLogged = userLocalStorage;
     }

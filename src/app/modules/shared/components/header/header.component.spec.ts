@@ -26,10 +26,47 @@ describe('HeaderComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
+
+    component.routes = [
+      {
+        link: '/starships',
+        text: 'NAVES',
+        isVisible: true
+      },
+      {
+        link: '/extra',
+        text: 'EXTRA',
+        isVisible: true
+      },
+      {
+        link: '/admin',
+        text: 'ADMINISTRACIÓN',
+        isVisible: false
+      }
+    ];
+
+    component.sideNavIsOpen = false;
+
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should toggleSideNavEmit emit', () => {
+    spyOn(component.toggleSideNav, 'emit');
+
+    component.toggleSideNavEmit();
+
+    expect(component.toggleSideNav.emit).toHaveBeenCalled();
+  });
+
+  it('should logoutEmit emit', () => {
+    spyOn(component.logout, 'emit');
+
+    component.logoutEmit();
+
+    expect(component.logout.emit).toHaveBeenCalled();
   });
 });

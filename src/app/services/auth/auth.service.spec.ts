@@ -10,6 +10,7 @@ describe('AuthService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(AuthService);
+    service.userLogged = null;
   });
 
   it('should be created', () => {
@@ -222,5 +223,28 @@ describe('AuthService', () => {
 
     expect(service.userLogged).toBeNull();
     expect(localStorage.getItem('auth')).toBeNull();
+  });
+
+  it('should checkUserLogged set userLogged', () => {
+    const user = {
+      email: 'test@email.com',
+      name: 'Test',
+      lastname: 'Test',
+      role: RoleEnum.CLIENT
+    };
+
+    localStorage.setItem('auth', btoa(JSON.stringify(user)));
+
+    service.checkUserLogged();
+
+    expect(service.userLogged).toEqual(user);
+  });
+
+  it('should checkUserLogged not set userLogged', () => {
+    localStorage.removeItem('auth');
+
+    service.checkUserLogged();
+
+    expect(service.userLogged).toBeNull();
   });
 });
