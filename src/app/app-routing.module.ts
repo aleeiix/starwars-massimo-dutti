@@ -56,6 +56,11 @@ const routes: Routes = [
     canActivateChild: [AuthGuard]
   },
   {
+    path: 'error',
+    loadChildren: () =>
+      import('./modules/error/error.module').then((m) => m.ErrorModule)
+  },
+  {
     path: '**',
     redirectTo: ''
   }

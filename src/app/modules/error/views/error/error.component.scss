@@ -1,0 +1,36 @@
+@import './../../../../../styles/variables.scss';
+
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h3 {
+      font-size: 5em;
+      line-height: normal;
+      margin: 0;
+    }
+    h4 {
+      font-size: 2em;
+      margin: 0;
+    }
+  }
+  img {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 2rem;
+  }
+  a {
+    max-width: 400px;
+    color: $light-color !important;
+    margin-top: 2rem;
+  }
+}

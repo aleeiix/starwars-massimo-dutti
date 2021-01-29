@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -12,8 +13,8 @@ import { LoggedLayoutComponent } from './layouts/logged-layout/logged-layout.com
 import { HeaderComponent } from './components/header/header.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SpinnerInterceptorService } from './interceptors/spinner-interceptor/spinner-interceptor.service';
+import { ErrorInterceptorService } from './interceptors/error-interceptor/error-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,11 @@ import { SpinnerInterceptorService } from './interceptors/spinner-interceptor/sp
     {
       provide: HTTP_INTERCEPTORS,
       useClass: SpinnerInterceptorService,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptorService,
       multi: true
     }
   ],
