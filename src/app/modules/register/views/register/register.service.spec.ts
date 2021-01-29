@@ -1,15 +1,20 @@
-import { RoleEnum } from './../../../../models/role.enum';
 import { AuthService } from '@services/auth/auth.service';
 import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+import { RoleEnum } from '@models/role.enum';
 import { RegisterService } from './register.service';
 
 describe('RegisterService', () => {
   let service: RegisterService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [MatSnackBarModule, BrowserAnimationsModule]
+    });
     service = TestBed.inject(RegisterService);
   });
 

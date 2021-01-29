@@ -1,12 +1,14 @@
-import { LoginService } from './login.service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { of, throwError } from 'rxjs';
+import { Router } from '@angular/router';
+
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { LoginComponent } from './login.component';
 import { LoginFormComponent } from './../../components/login-form/login-form.component';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Observable, of, throwError } from 'rxjs';
-import { Router } from '@angular/router';
+import { LoginService } from './login.service';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -15,7 +17,7 @@ describe('LoginComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LoginComponent, LoginFormComponent],
-      imports: [RouterTestingModule]
+      imports: [RouterTestingModule, MatSnackBarModule]
     }).compileComponents();
   });
 

@@ -40,7 +40,6 @@ export class LoginComponent implements OnInit {
     this.loginService.login(this.loginForm.value).subscribe(
       (res) => {
         if (res) {
-          alert('Sesión iniciada');
           this.router.navigate(['/starships']);
         } else {
           this.loginError =

@@ -6,6 +6,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { LoggedLayoutComponent } from './layouts/logged-layout/logged-layout.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -27,7 +28,8 @@ import { SpinnerInterceptorService } from './interceptors/spinner-interceptor/sp
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSnackBarModule
   ],
   providers: [
     {

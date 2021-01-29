@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Register } from '@models/register.interface';
 import { AuthService } from '@services/auth/auth.service';
 import { SpinnerService } from '@modules/shared/components/spinner/spinner.service';
+import { SnackbarService } from '@modules/shared/services/snackbar/snackbar.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,14 +13,18 @@ import { SpinnerService } from '@modules/shared/components/spinner/spinner.servi
 export class RegisterService {
   constructor(
     private authService: AuthService,
-    private spinnerService: SpinnerService
+    private spinnerService: SpinnerService,
+    private snackbarService: SnackbarService
   ) {}
 
   createUser(register: Register): Observable<boolean> {
     this.spinnerService.openLoading();
 
     return this.authService.createUser(register).pipe(
-      tap(() => {
+      tap((res) => {
+        if (res) {
+          this.snackbarService.openSnackBar('Gracias por registrarte');
+        }
         this.spinnerService.closeLoading();
       })
     );

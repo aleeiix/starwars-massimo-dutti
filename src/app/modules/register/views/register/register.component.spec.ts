@@ -1,14 +1,18 @@
-import { RegisterService } from './register.service';
-import { RoleEnum } from './../../../../models/role.enum';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { of, throwError } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
+
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+import { RoleEnum } from '@models/role.enum';
 
 import { RegisterComponent } from './register.component';
 import { RegisterFormComponent } from './../../components/register-form/register-form.component';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { RegisterService } from './register.service';
+
 import { emailValidator, strongPasswordValdiator } from '@utils/validations';
-import { of, throwError } from 'rxjs';
-import { Router } from '@angular/router';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -17,7 +21,7 @@ describe('RegisterComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [RegisterComponent, RegisterFormComponent],
-      imports: [RouterTestingModule]
+      imports: [RouterTestingModule, MatSnackBarModule]
     }).compileComponents();
   });
 

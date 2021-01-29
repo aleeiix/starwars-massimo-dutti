@@ -47,8 +47,7 @@ export class RegisterComponent implements OnInit {
 
   register(): void {
     this.registerService.createUser(this.registerForm.value).subscribe(
-      (res) => {
-        alert('Gracias por registrarte');
+      () => {
         this.router.navigate(['/login']);
       },
       (err) => {

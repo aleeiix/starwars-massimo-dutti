@@ -1,14 +1,19 @@
 import { TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { LoginService } from './login.service';
 import { AuthService } from '@services/auth/auth.service';
-import { of } from 'rxjs';
 
 describe('LoginService', () => {
   let service: LoginService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [MatSnackBarModule, BrowserAnimationsModule]
+    });
     service = TestBed.inject(LoginService);
   });
 
