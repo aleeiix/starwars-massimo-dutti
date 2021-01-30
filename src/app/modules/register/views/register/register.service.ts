@@ -1,6 +1,6 @@
-import { tap } from 'rxjs/operators';
+import { tap, catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 
 import { Register } from '@models/register.interface';
 import { AuthService } from '@services/auth/auth.service';
@@ -26,6 +26,10 @@ export class RegisterService {
           this.snackbarService.openSnackBar('Gracias por registrarte');
         }
         this.spinnerService.closeLoading();
+      }),
+      catchError((err) => {
+        this.spinnerService.closeLoading();
+        return throwError(err);
       })
     );
   }

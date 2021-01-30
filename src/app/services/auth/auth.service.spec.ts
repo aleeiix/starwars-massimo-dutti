@@ -1,8 +1,9 @@
-import { IndexedDBService } from './../indexed-db/indexed-db.service';
+import { environment } from 'src/environments/environment';
 import { TestBed } from '@angular/core/testing';
-import { RoleEnum } from '@models/role.enum';
 
+import { IndexedDBService } from './../indexed-db/indexed-db.service';
 import { AuthService } from './auth.service';
+import { RoleEnum } from '@models/role.enum';
 
 describe('AuthService', () => {
   let service: AuthService;
@@ -10,6 +11,9 @@ describe('AuthService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(AuthService);
+
+    service.table.clear();
+
     service.userLogged = null;
   });
 
@@ -17,9 +21,7 @@ describe('AuthService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should createUser return observable true', (done) => {
-    const indexedDBService = TestBed.inject(IndexedDBService);
-
+  it('should createUser success', (done) => {
     const newUser = {
       role: RoleEnum.CLIENT,
       name: 'Test',
@@ -27,27 +29,13 @@ describe('AuthService', () => {
       email: 'test@email.com',
       password: 'Test-1234'
     };
-
-    const newUserDb = {
-      role: RoleEnum.CLIENT,
-      name: 'Test',
-      lastname: 'Test',
-      email: 'test@email.com',
-      password: btoa('Test-1234')
-    };
-
-    spyOn(indexedDBService, 'addUser').and.returnValue(Promise.resolve(true));
-
     service.createUser(newUser).subscribe((res) => {
       expect(res).toEqual(true);
-      expect(indexedDBService.addUser).toHaveBeenCalledWith(newUserDb);
       done();
     });
   });
 
-  it('should createUser return observable false', (done) => {
-    const indexedDBService = TestBed.inject(IndexedDBService);
-
+  it('should createUser error  email already exist', (done) => {
     const newUser = {
       role: RoleEnum.CLIENT,
       name: 'Test',
@@ -56,70 +44,24 @@ describe('AuthService', () => {
       password: 'Test-1234'
     };
 
-    const newUserDb = {
-      role: RoleEnum.CLIENT,
-      name: 'Test',
-      lastname: 'Test',
-      email: 'test@email.com',
-      password: btoa('Test-1234')
-    };
-
-    spyOn(indexedDBService, 'addUser').and.returnValue(Promise.resolve(false));
-
-    service.createUser(newUser).subscribe((res) => {
-      expect(res).toEqual(false);
-      expect(indexedDBService.addUser).toHaveBeenCalledWith(newUserDb);
-      done();
+    service.createUser(newUser).subscribe(() => {
+      service.createUser(newUser).subscribe(
+        () => {},
+        (err) => {
+          expect(err).toEqual('El email insertado ya existe.');
+          done();
+        }
+      );
     });
-  });
-
-  it('should createUser return observable with error', (done) => {
-    const errorTest = 'Error Test';
-    const indexedDBService = TestBed.inject(IndexedDBService);
-
-    const newUser = {
-      role: RoleEnum.CLIENT,
-      name: 'Test',
-      lastname: 'Test',
-      email: 'test@email.com',
-      password: 'Test-1234'
-    };
-
-    const newUserDb = {
-      role: RoleEnum.CLIENT,
-      name: 'Test',
-      lastname: 'Test',
-      email: 'test@email.com',
-      password: btoa('Test-1234')
-    };
-
-    spyOn(indexedDBService, 'addUser').and.returnValue(
-      Promise.reject(errorTest)
-    );
-
-    service.createUser(newUser).subscribe(
-      (res) => {},
-      (err) => {
-        expect(err).toEqual(errorTest);
-        expect(indexedDBService.addUser).toHaveBeenCalledWith(newUserDb);
-        done();
-      }
-    );
   });
 
   it('should login correct', (done) => {
-    const indexedDBService = TestBed.inject(IndexedDBService);
-
-    const userDb = {
+    const newUser = {
       role: RoleEnum.CLIENT,
       name: 'Test',
       lastname: 'Test',
-      email: 'test@email.com'
-    };
-
-    const userDbWithPassword = {
-      ...userDb,
-      password: btoa('Test-1234')
+      email: 'test@email.com',
+      password: 'Test-1234'
     };
 
     const login = {
@@ -127,29 +69,22 @@ describe('AuthService', () => {
       password: 'Test-1234'
     };
 
-    spyOn(indexedDBService, 'getUserByEmail').and.returnValue(
-      Promise.resolve(userDbWithPassword)
-    );
-
-    service.login(login).subscribe((res) => {
-      expect(res).toEqual(true);
-      expect(service.userLogged).toEqual(userDb);
-      expect(JSON.parse(atob(localStorage.getItem('auth')))).toEqual(userDb);
-      done();
+    service.createUser(newUser).subscribe(() => {
+      delete newUser.password;
+      service.login(login).subscribe((res) => {
+        expect(res).toEqual(true);
+        expect(service.userLogged).toEqual(newUser);
+        expect(JSON.parse(atob(localStorage.getItem('auth')))).toEqual(newUser);
+        done();
+      });
     });
   });
 
   it('should login email not exist in database', (done) => {
-    const indexedDBService = TestBed.inject(IndexedDBService);
-
     const login = {
       email: 'test@email.com',
       password: 'Test-1234'
     };
-
-    spyOn(indexedDBService, 'getUserByEmail').and.returnValue(
-      Promise.resolve(undefined)
-    );
 
     service.login(login).subscribe((res) => {
       expect(res).toEqual(false);
@@ -158,55 +93,25 @@ describe('AuthService', () => {
   });
 
   it('should login password not equal', (done) => {
-    const indexedDBService = TestBed.inject(IndexedDBService);
-
-    const userDb = {
+    const newUser = {
       role: RoleEnum.CLIENT,
       name: 'Test',
       lastname: 'Test',
-      email: 'test@email.com'
-    };
-
-    const userDbWithPassword = {
-      ...userDb,
-      password: btoa('Test-5678')
-    };
-
-    const login = {
       email: 'test@email.com',
       password: 'Test-1234'
     };
 
-    spyOn(indexedDBService, 'getUserByEmail').and.returnValue(
-      Promise.resolve(userDbWithPassword)
-    );
-
-    service.login(login).subscribe((res) => {
-      expect(res).toEqual(false);
-      done();
-    });
-  });
-
-  it('should login return error', (done) => {
-    const errorTest = 'Error Test';
-    const indexedDBService = TestBed.inject(IndexedDBService);
-
     const login = {
       email: 'test@email.com',
-      password: 'Test-1234'
+      password: 'Test-5678'
     };
 
-    spyOn(indexedDBService, 'getUserByEmail').and.returnValue(
-      Promise.reject(errorTest)
-    );
-
-    service.login(login).subscribe(
-      (res) => {},
-      (err) => {
-        expect(err).toEqual(errorTest);
+    service.createUser(newUser).subscribe(() => {
+      service.login(login).subscribe((res) => {
+        expect(res).toEqual(false);
         done();
-      }
-    );
+      });
+    });
   });
 
   it('should logout', () => {

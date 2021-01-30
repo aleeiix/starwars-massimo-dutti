@@ -1,9 +1,9 @@
-import { tap } from 'rxjs/operators';
+import { tap, catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 import { AuthService } from '@services/auth/auth.service';
 import { Login } from '@models/login.interface';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { SpinnerService } from '@modules/shared/components/spinner/spinner.service';
 import { SnackbarService } from '@modules/shared/services/snackbar/snackbar.service';
 
@@ -26,6 +26,10 @@ export class LoginService {
           this.snackbarService.openSnackBar('Sesión iniciada');
         }
         this.spinnerService.closeLoading();
+      }),
+      catchError((err) => {
+        this.spinnerService.closeLoading();
+        return throwError(err);
       })
     );
   }

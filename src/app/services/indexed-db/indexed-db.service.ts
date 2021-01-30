@@ -1,109 +1,17 @@
 import { Injectable } from '@angular/core';
 
+import Dexie from 'dexie';
+
 import { environment } from 'src/environments/environment';
-import { Register } from '@models/register.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class IndexedDBService {
-  private readonly nameTableUsers = 'users';
-  private readonly internalErrorMessage = 'Error interno, pruebe mas tarde.';
-
-  constructor() {}
-
-  addUser(newUser: Register): Promise<boolean> {
-    return new Promise((resolve, reject) => {
-      const connection: IDBOpenDBRequest = this.getConnection(reject);
-
-      connection.onsuccess = (event: any) => {
-        const db: IDBDatabase = event.target.result;
-
-        this.createSchemaIfNotExist(db);
-
-        const transaction = db.transaction(this.nameTableUsers, 'readwrite');
-
-        const usersStore = transaction.objectStore(this.nameTableUsers);
-
-        const requestUser = usersStore.get(newUser.email);
-
-        requestUser.onsuccess = () => {
-          if (requestUser.result) {
-            reject('El email insertado ya existe.');
-          } else {
-            const addUserRequest = usersStore.add(newUser);
-
-            addUserRequest.onsuccess = () => {
-              resolve(true);
-            };
-
-            addUserRequest.onerror = () => {
-              reject(this.internalErrorMessage);
-            };
-          }
-        };
-
-        requestUser.onerror = () => {
-          reject(this.internalErrorMessage);
-        };
-
-        db.close();
-      };
+export class IndexedDBService extends Dexie {
+  constructor() {
+    super(environment.local_db_name);
+    this.version(environment.local_db_version).stores({
+      [environment.local_db_tale_users]: 'email'
     });
-  }
-
-  getUserByEmail(email: string): Promise<Register> {
-    return new Promise((resolve, reject) => {
-      const connection: IDBOpenDBRequest = this.getConnection(reject);
-
-      connection.onsuccess = (event: any) => {
-        const db: IDBDatabase = event.target.result;
-
-        this.createSchemaIfNotExist(db);
-
-        const transaction = db.transaction(this.nameTableUsers, 'readonly');
-
-        const usersStore = transaction.objectStore(this.nameTableUsers);
-
-        const requestUser = usersStore.get(email);
-
-        requestUser.onsuccess = () => {
-          resolve(requestUser.result);
-        };
-
-        requestUser.onerror = () => {
-          reject(this.internalErrorMessage);
-        };
-
-        db.close();
-      };
-    });
-  }
-
-  private getConnection(reject): IDBOpenDBRequest {
-    const connection = window.indexedDB.open(
-      environment.local_db_name,
-      environment.local_db_version
-    );
-
-    connection.onerror = () => {
-      reject(this.internalErrorMessage);
-    };
-
-    connection.onupgradeneeded = (event: any) => {
-      const db: IDBDatabase = event.target.result;
-
-      this.createSchemaIfNotExist(db);
-    };
-
-    return connection;
-  }
-
-  private createSchemaIfNotExist(db: IDBDatabase): void {
-    if (!db.objectStoreNames.contains(this.nameTableUsers)) {
-      db.createObjectStore(this.nameTableUsers, {
-        keyPath: 'email'
-      });
-    }
   }
 }
