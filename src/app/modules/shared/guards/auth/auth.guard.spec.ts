@@ -2,12 +2,12 @@ import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Router } from '@angular/router';
 
 import { AuthGuard } from './auth.guard';
 import { AuthService } from '@services/auth/auth.service';
 import { RoleEnum } from '@models/role.enum';
 import { SnackbarService } from '@modules/shared/services/snackbar/snackbar.service';
-import { Router } from '@angular/router';
 
 describe('AuthGuard', () => {
   let guard: AuthGuard;

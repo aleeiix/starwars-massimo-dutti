@@ -1,7 +1,7 @@
 import { AuthService } from '@services/auth/auth.service';
 import { TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { of } from 'rxjs';
 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 

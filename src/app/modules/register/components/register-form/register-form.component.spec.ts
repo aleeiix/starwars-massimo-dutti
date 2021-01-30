@@ -1,5 +1,4 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RoleEnum } from './../../../../models/role.enum';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import {
   FormGroup,
@@ -14,10 +13,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 
 import { RegisterFormComponent } from './register-form.component';
-import {
-  emailValidator,
-  strongPasswordValdiator
-} from 'src/app/utils/validations';
+
+import { RoleEnum } from '@models/role.enum';
+
+import { emailValidator, strongPasswordValdiator } from '@utils/validations';
 
 describe('RegisterFormComponent', () => {
   let component: RegisterFormComponent;

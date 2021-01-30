@@ -3,7 +3,7 @@ import { of, Subject, Observable } from 'rxjs';
 
 import { SpinnerInterceptorService } from './spinner-interceptor.service';
 import { SpinnerService } from '@modules/shared/components/spinner/spinner.service';
-import { HeadersEnum } from '@models/headers.enum';
+import { HttpHeadersEnum } from '@models/http-headers.enum';
 
 describe('SpinnerInterceptorService', () => {
   let service: SpinnerInterceptorService;
@@ -122,7 +122,7 @@ describe('SpinnerInterceptorService', () => {
         clone: () => true,
         url: 'test',
         headers: {
-          keys: () => [HeadersEnum.NO_SPINNER],
+          keys: () => [HttpHeadersEnum.NO_SPINNER],
           has: () => true,
           append: () => 'test'
         }

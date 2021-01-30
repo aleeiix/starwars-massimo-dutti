@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { of, throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { of, throwError } from 'rxjs';
 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 

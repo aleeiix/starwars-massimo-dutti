@@ -1,13 +1,15 @@
-import { environment } from './../../../../../environments/environment';
-import { of } from 'rxjs';
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
 import { StarshipDetailComponent } from './starship-detail.component';
-import { ActivatedRoute } from '@angular/router';
 import { StarshipDetailService } from './starship-detail.service';
-import { starshipCompleteMock } from 'src/assets/mocks/starships-data/starships-data.mock';
+
+import { starshipCompleteMock } from '@assets/mocks/starships-data/starships-data.mock';
+
+import { environment } from '@environments/environment';
 
 describe('StarshipDetailComponent', () => {
   let component: StarshipDetailComponent;

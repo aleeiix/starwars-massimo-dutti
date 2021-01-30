@@ -1,13 +1,8 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnInit
-} from '@angular/core';
-
-import { environment } from 'src/environments/environment';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { Starship } from '@models/starship.interface';
+
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'md-starship-card',

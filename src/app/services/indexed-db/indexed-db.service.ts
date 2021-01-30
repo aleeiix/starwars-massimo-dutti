@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import Dexie from 'dexie';
 
-import { environment } from 'src/environments/environment';
+import { environment } from '@environments/environment';
 
 @Injectable({
   providedIn: 'root'

@@ -1,4 +1,3 @@
-import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { from, Observable, throwError } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
@@ -7,6 +6,8 @@ import { IndexedDBService } from './../indexed-db/indexed-db.service';
 import { Register } from '@models/register.interface';
 import { Login } from '@models/login.interface';
 import { User } from '@models/user.interface';
+
+import { environment } from '@environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -57,7 +58,6 @@ export class AuthService {
   checkUserLogged(): void {
     const localstorageData = localStorage.getItem(this.keyLocalStorage);
     if (localstorageData) {
-      console.log(localstorageData);
       const userLocalStorage = JSON.parse(this.decode(localstorageData));
       this.userLogged = userLocalStorage;
     }

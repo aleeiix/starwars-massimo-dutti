@@ -1,7 +1,5 @@
-import { environment } from 'src/environments/environment';
 import { TestBed } from '@angular/core/testing';
 
-import { IndexedDBService } from './../indexed-db/indexed-db.service';
 import { AuthService } from './auth.service';
 import { RoleEnum } from '@models/role.enum';
 

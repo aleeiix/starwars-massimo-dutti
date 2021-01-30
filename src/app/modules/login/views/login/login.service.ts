@@ -1,9 +1,9 @@
-import { tap, catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
+import { Observable, throwError } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
 
 import { AuthService } from '@services/auth/auth.service';
 import { Login } from '@models/login.interface';
-import { Observable, throwError } from 'rxjs';
 import { SpinnerService } from '@modules/shared/components/spinner/spinner.service';
 import { SnackbarService } from '@modules/shared/services/snackbar/snackbar.service';
 

@@ -1,14 +1,16 @@
-import { of } from 'rxjs';
 import {
   HttpClientModule,
   HttpClient,
   HttpHeaders
 } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
+
+import { CacheService } from '@services/cache/cache.service';
 
 import { PeopleDataService } from './people-data.service';
-import { peopleMock } from 'src/assets/mocks/people-data/people-data.mock';
-import { CacheService } from '@services/cache/cache.service';
+
+import { peopleMock } from '@assets/mocks/people-data/people-data.mock';
 
 describe('PeopleDataService', () => {
   let service: PeopleDataService;

@@ -1,6 +1,7 @@
-import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { environment } from '@environments/environment';
 
 @Injectable({
   providedIn: 'root'

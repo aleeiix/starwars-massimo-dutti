@@ -1,15 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { RouterTestingModule } from '@angular/router/testing';
 
 import { LoggedLayoutComponent } from './logged-layout.component';
 import { HeaderComponent } from './../../components/header/header.component';
 import { AuthService } from '@services/auth/auth.service';
 import { RoleEnum } from '@models/role.enum';
-import { Router } from '@angular/router';
 
 describe('LoggedLayoutComponent', () => {
   let component: LoggedLayoutComponent;

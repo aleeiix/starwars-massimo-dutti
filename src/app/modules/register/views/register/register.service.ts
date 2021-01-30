@@ -1,6 +1,6 @@
-import { tap, catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Observable, of, throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { tap, catchError } from 'rxjs/operators';
 
 import { Register } from '@models/register.interface';
 import { AuthService } from '@services/auth/auth.service';
