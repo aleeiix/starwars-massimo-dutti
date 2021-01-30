@@ -15,7 +15,7 @@ import { Starship } from '@models/starship.interface';
   styleUrls: ['./starship-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class StarshipCardComponent implements OnInit {
+export class StarshipCardComponent {
   @Input() starship: Starship;
 
   error = false;
@@ -29,8 +29,6 @@ export class StarshipCardComponent implements OnInit {
   }
 
   constructor() {}
-
-  ngOnInit(): void {}
 
   showImageNotFound(): void {
     this.error = true;

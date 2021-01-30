@@ -1,3 +1,4 @@
+import { environment } from './../../../../../environments/environment';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StarshipCardComponent } from './starship-card.component';
@@ -46,5 +47,24 @@ describe('StarshipCardComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    expect(component.error).toBeFalse();
+  });
+
+  it('should showImageNotFound', () => {
+    component.showImageNotFound();
+    expect(component.error).toBeTrue();
+  });
+
+  it('should imageStyle without error', () => {
+    expect(component.imageStyle).toEqual({
+      'background-image': `url(${component.starship.image})`
+    });
+  });
+
+  it('should imageStyle with error', () => {
+    component.showImageNotFound();
+    expect(component.imageStyle).toEqual({
+      'background-image': `url(${environment.image_not_found})`
+    });
   });
 });

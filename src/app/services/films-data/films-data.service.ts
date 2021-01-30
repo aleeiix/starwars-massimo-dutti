@@ -21,6 +21,7 @@ export class FilmsDataService {
 
   getFilmById(id: string, headers: HttpHeaders): Observable<Film> {
     const filmCache = this.cacheService.getData<Film>(this.cacheKey, id);
+
     if (filmCache) {
       return of(filmCache);
     }
