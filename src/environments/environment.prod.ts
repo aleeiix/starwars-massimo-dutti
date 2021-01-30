@@ -4,5 +4,6 @@ export const environment = {
   local_db_version: 1,
   api_url: 'https://swapi.dev/api',
   image_not_found: 'assets/images/image-not-found.jpg',
-  time_cache: 300000
+  time_cache: 300000,
+  snackbar_time: 1500
 };

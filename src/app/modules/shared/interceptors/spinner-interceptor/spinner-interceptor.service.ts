@@ -33,6 +33,7 @@ export class SpinnerInterceptorService implements HttpInterceptor {
     return next.handle(req).pipe(
       finalize(() => {
         this.requestsInProgress--;
+
         if (this.requestsInProgress === 0) {
           this.spinnerService.closeLoading();
         }

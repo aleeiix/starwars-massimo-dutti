@@ -32,7 +32,7 @@ export class CacheService {
     }, environment.time_cache);
   }
 
-  private removeData(key: string, id: string): void {
+  removeData(key: string, id: string): void {
     const storageKey = this.storage.get(key);
 
     delete storageKey[id];

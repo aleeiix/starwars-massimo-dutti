@@ -7,6 +7,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { RoleEnum } from '@models/role.enum';
 import { RegisterService } from './register.service';
+import { SnackbarService } from '@modules/shared/services/snackbar/snackbar.service';
+import { SpinnerService } from '@modules/shared/components/spinner/spinner.service';
 
 describe('RegisterService', () => {
   let service: RegisterService;
@@ -24,6 +26,8 @@ describe('RegisterService', () => {
 
   it('should createUser return Observable true', (done) => {
     const authService = TestBed.inject(AuthService);
+    const snackbarService = TestBed.inject(SnackbarService);
+    const spinnerService = TestBed.inject(SpinnerService);
 
     const newUser = {
       role: RoleEnum.CLIENT,
@@ -34,8 +38,19 @@ describe('RegisterService', () => {
     };
 
     spyOn(authService, 'createUser').and.returnValue(of(true));
+    spyOn(snackbarService, 'openSnackBar');
+    spyOn(spinnerService, 'openLoading');
+    spyOn(spinnerService, 'closeLoading');
 
-    service.createUser(newUser).subscribe((res) => {
+    const createUserResponse = service.createUser(newUser);
+
+    expect(spinnerService.openLoading).toHaveBeenCalled();
+
+    createUserResponse.subscribe((res) => {
+      expect(snackbarService.openSnackBar).toHaveBeenCalled();
+
+      expect(spinnerService.closeLoading).toHaveBeenCalled();
+
       expect(res).toEqual(true);
       done();
     });
@@ -43,6 +58,8 @@ describe('RegisterService', () => {
 
   it('should createUser return Observable false', (done) => {
     const authService = TestBed.inject(AuthService);
+    const snackbarService = TestBed.inject(SnackbarService);
+    const spinnerService = TestBed.inject(SpinnerService);
 
     const newUser = {
       role: RoleEnum.CLIENT,
@@ -53,8 +70,17 @@ describe('RegisterService', () => {
     };
 
     spyOn(authService, 'createUser').and.returnValue(of(false));
+    spyOn(snackbarService, 'openSnackBar');
+    spyOn(spinnerService, 'openLoading');
+    spyOn(spinnerService, 'closeLoading');
 
-    service.createUser(newUser).subscribe((res) => {
+    const createUserResponse = service.createUser(newUser);
+
+    expect(spinnerService.openLoading).toHaveBeenCalled();
+
+    createUserResponse.subscribe((res) => {
+      expect(spinnerService.closeLoading).toHaveBeenCalled();
+
       expect(res).toEqual(false);
       done();
     });
