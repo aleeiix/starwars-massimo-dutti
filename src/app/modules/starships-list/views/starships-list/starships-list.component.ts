@@ -2,13 +2,15 @@ import {
   ChangeDetectionStrategy,
   Component,
   OnDestroy,
-  OnInit
+  OnInit,
+  ChangeDetectorRef
 } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { StarshipsListService } from './starships-list.service';
 
 import { Starship } from '@models/starship.interface';
+import { TypeViewEnum } from '@models/type-view.enum';
 
 @Component({
   selector: 'md-starships-list',
@@ -17,9 +19,15 @@ import { Starship } from '@models/starship.interface';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StarshipsListComponent implements OnInit, OnDestroy {
-  starships$: Observable<Starship[]>;
+  TypeViewEnum = TypeViewEnum;
 
-  constructor(private starshipsListService: StarshipsListService) {}
+  starships$: Observable<Starship[]>;
+  typeView: TypeViewEnum = TypeViewEnum.LARGE;
+
+  constructor(
+    private starshipsListService: StarshipsListService,
+    private changeDetectorRef: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.starships$ = this.starshipsListService.starships$;
@@ -28,6 +36,11 @@ export class StarshipsListComponent implements OnInit, OnDestroy {
 
   onScroll(): void {
     this.starshipsListService.getMoreStarships();
+  }
+
+  changeTypeView(typeView: TypeViewEnum): void {
+    this.typeView = typeView;
+    this.changeDetectorRef.markForCheck();
   }
 
   ngOnDestroy(): void {

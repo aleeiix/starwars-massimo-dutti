@@ -1,6 +1,23 @@
+<div>
+  <span>Tipo de visualización: </span>
+  <img
+    [ngClass]="{ active: TypeViewEnum.LARGE === typeView }"
+    (click)="changeTypeView(TypeViewEnum.LARGE)"
+    src="assets/images/large.png"
+    alt="Imagenes en grade"
+  />
+  <img
+    [ngClass]="{ active: TypeViewEnum.SMALL === typeView }"
+    (click)="changeTypeView(TypeViewEnum.SMALL)"
+    src="assets/images/small.png"
+    alt="Imagenes en pequeño"
+  />
+</div>
+
 <section
+  [ngClass]="TypeViewEnum.LARGE === typeView ? 'large' : 'small'"
   infiniteScroll
-  [infiniteScrollDistance]="1"
+  [infiniteScrollDistance]="2"
   [infiniteScrollThrottle]="10"
   (scrolled)="onScroll()"
 >
