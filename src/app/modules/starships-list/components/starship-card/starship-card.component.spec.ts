@@ -1,7 +1,8 @@
-import { environment } from './../../../../../environments/environment';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StarshipCardComponent } from './starship-card.component';
+
+import { environment } from '@environments/environment';
 
 describe('StarshipCardComponent', () => {
   let component: StarshipCardComponent;

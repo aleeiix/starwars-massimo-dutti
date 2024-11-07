@@ -1,19 +1,19 @@
-import { of } from 'rxjs';
 import { HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 
 import { StarshipDetailService } from './starship-detail.service';
 import { StarshipsDataService } from '@services/starships-data/starships-data.service';
-import { StarshipsDataMockService } from 'src/assets/mocks/starships-data/starships-data.mock.service';
 import { FilmsDataService } from '@services/films-data/films-data.service';
 import { PeopleDataService } from '@services/people-data/people-data.service';
-import { FilmsDataMockService } from 'src/assets/mocks/films-data/films-data.mock.service';
-import { PeopleDataMockService } from 'src/assets/mocks/people-data/people-data.mock.service';
-import { starshipCompleteMock } from 'src/assets/mocks/starships-data/starships-data.mock';
 
-import { starshipMock } from '../../../../../assets/mocks/starships-data/starships-data.mock';
-import { peopleMock } from 'src/assets/mocks/people-data/people-data.mock';
-import { filmMock } from '../../../../../assets/mocks/films-data/films-data.mock';
+import { StarshipsDataMockService } from '@assets/mocks/starships-data/starships-data.mock.service';
+import { FilmsDataMockService } from '@assets/mocks/films-data/films-data.mock.service';
+import { PeopleDataMockService } from '@assets/mocks/people-data/people-data.mock.service';
+import { starshipCompleteMock } from '@assets/mocks/starships-data/starships-data.mock';
+import { starshipMock } from '@assets/mocks/starships-data/starships-data.mock';
+import { peopleMock } from '@assets/mocks/people-data/people-data.mock';
+import { filmMock } from '@assets/mocks/films-data/films-data.mock';
 
 describe('StarshipDetailService', () => {
   let service: StarshipDetailService;

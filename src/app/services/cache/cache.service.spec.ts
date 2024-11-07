@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { CacheService } from './cache.service';
 
-import { starshipMock } from './../../../assets/mocks/starships-data/starships-data.mock';
+import { starshipMock } from '@assets/mocks/starships-data/starships-data.mock';
 
 describe('CacheService', () => {
   let service: CacheService;

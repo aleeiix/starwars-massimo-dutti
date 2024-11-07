@@ -1,13 +1,14 @@
-import { of } from 'rxjs';
 import { TestBed } from '@angular/core/testing';
+import { HttpErrorResponse } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Router } from '@angular/router';
+
+import { of } from 'rxjs';
 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { ErrorInterceptorService } from './error-interceptor.service';
 import { SnackbarService } from '@modules/shared/services/snackbar/snackbar.service';
-import { Router } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
 
 describe('ErrorInterceptorService', () => {
   let service: ErrorInterceptorService;

@@ -1,11 +1,11 @@
-import { AdminGuard } from './modules/shared/guards/admin/admin.guard';
-import { NoAuthGuard } from './modules/shared/guards/no-auth/no-auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { LoggedLayoutComponent } from './modules/shared/layouts/logged-layout/logged-layout.component';
 
 import { AuthGuard } from './modules/shared/guards/auth/auth.guard';
+import { AdminGuard } from './modules/shared/guards/admin/admin.guard';
+import { NoAuthGuard } from './modules/shared/guards/no-auth/no-auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'starships', pathMatch: 'full' },

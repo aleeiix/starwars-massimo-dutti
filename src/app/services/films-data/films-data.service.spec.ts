@@ -1,15 +1,15 @@
-import { filmMock } from '../../../assets/mocks/films-data/films-data.mock';
-import { of } from 'rxjs';
 import {
   HttpClientModule,
   HttpClient,
   HttpHeaders
 } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 
 import { FilmsDataService } from './films-data.service';
 import { CacheService } from '@services/cache/cache.service';
-import { Film } from '@models/film.interface';
+
+import { filmMock } from '@assets/mocks/films-data/films-data.mock';
 
 describe('FilmsDataService', () => {
   let service: FilmsDataService;

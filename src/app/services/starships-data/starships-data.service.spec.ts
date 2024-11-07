@@ -1,19 +1,16 @@
-import { of } from 'rxjs';
 import {
   HttpClientModule,
   HttpClient,
   HttpHeaders
 } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 
 import { StarshipsDataService } from './starships-data.service';
-import { starshipMock } from 'src/assets/mocks/starships-data/starships-data.mock';
 import { CacheService } from '@services/cache/cache.service';
 
-import {
-  starshipPaginationMock,
-  starshipCompleteMock
-} from './../../../assets/mocks/starships-data/starships-data.mock';
+import { starshipMock } from '@assets/mocks/starships-data/starships-data.mock';
+import { starshipPaginationMock } from '@assets/mocks/starships-data/starships-data.mock';
 
 describe('StarshipsDataService', () => {
   let service: StarshipsDataService;

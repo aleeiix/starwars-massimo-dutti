@@ -1,6 +1,7 @@
-import { ErrorComponent } from './views/error/error.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+import { ErrorComponent } from './views/error/error.component';
 
 const routes: Routes = [{ path: '', component: ErrorComponent }];
 

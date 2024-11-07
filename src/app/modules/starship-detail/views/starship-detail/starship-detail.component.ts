@@ -6,14 +6,14 @@ import {
   OnInit
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap, tap } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
-import { environment } from 'src/environments/environment';
+import { StarshipDetailService } from './starship-detail.service';
 
 import { Starship } from '@models/starship.interface';
 
-import { StarshipDetailService } from './starship-detail.service';
-import { Subscription } from 'rxjs';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'md-starship-detail',

@@ -1,14 +1,15 @@
-import { map, tap } from 'rxjs/operators';
 import { Pagination } from '@models/pagination.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
 import { Observable, of } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
-import { environment } from 'src/environments/environment';
-import { Starship } from '@models/starship.interface';
-import { getIdByUrl } from '@utils/utils';
 import { CacheService } from '@services/cache/cache.service';
+import { getIdByUrl } from '@utils/utils';
+
+import { Starship } from '@models/starship.interface';
+
+import { environment } from '@environments/environment';
 
 @Injectable({
   providedIn: 'root'

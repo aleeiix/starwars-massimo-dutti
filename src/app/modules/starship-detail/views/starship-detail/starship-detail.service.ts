@@ -1,6 +1,8 @@
-import { switchMap, map as maprxjs, tap } from 'rxjs/operators';
-import { forkJoin, Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
+
+import { forkJoin, Observable, of } from 'rxjs';
+import { switchMap, map as maprxjs } from 'rxjs/operators';
+
 import { StarshipsDataService } from '@services/starships-data/starships-data.service';
 import { PeopleDataService } from '@services/people-data/people-data.service';
 import { FilmsDataService } from '@services/films-data/films-data.service';

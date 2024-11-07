@@ -1,8 +1,9 @@
-import { environment } from 'src/environments/environment';
 import { TestBed } from '@angular/core/testing';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { SnackbarService } from './snackbar.service';
+
+import { environment } from '@environments/environment';
 
 describe('SnackbarService', () => {
   let service: SnackbarService;

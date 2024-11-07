@@ -5,12 +5,12 @@ import {
   Component,
   OnInit
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { emailValidator, strongPasswordValdiator } from '@utils/validations';
 
 import { RoleEnum } from '@models/role.enum';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'md-register',

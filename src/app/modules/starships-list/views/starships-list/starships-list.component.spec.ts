@@ -1,11 +1,14 @@
-import { starshipPaginationMock } from '../../../../../assets/mocks/starships-data/starships-data.mock';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 
+import { StarshipsListService } from './starships-list.service';
 import { StarshipsListComponent } from './starships-list.component';
 import { StarshipsDataService } from '@services/starships-data/starships-data.service';
-import { StarshipsDataMockService } from 'src/assets/mocks/starships-data/starships-data.mock.service';
-import { StarshipsListService } from './starships-list.service';
+
+import { TypeViewEnum } from '@models/type-view.enum';
+
+import { starshipPaginationMock } from '@assets/mocks/starships-data/starships-data.mock';
+import { StarshipsDataMockService } from '@assets/mocks/starships-data/starships-data.mock.service';
 
 describe('StarshipsListComponent', () => {
   let component: StarshipsListComponent;
@@ -43,6 +46,12 @@ describe('StarshipsListComponent', () => {
     spyOn(starshipsListService, 'getMoreStarships');
     component.onScroll();
     expect(starshipsListService.getMoreStarships).toHaveBeenCalled();
+  });
+
+  it('should changeTypeView set typeView', () => {
+    component.typeView = TypeViewEnum.LARGE;
+    component.changeTypeView(TypeViewEnum.SMALL);
+    expect(component.typeView).toEqual(TypeViewEnum.SMALL);
   });
 
   it('should ngOnDestroy call resetPages', () => {

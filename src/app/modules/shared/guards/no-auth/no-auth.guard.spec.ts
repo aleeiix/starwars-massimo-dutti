@@ -2,11 +2,11 @@ import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { Router } from '@angular/router';
 
 import { NoAuthGuard } from './no-auth.guard';
 import { AuthService } from '@services/auth/auth.service';
 import { SnackbarService } from '@modules/shared/services/snackbar/snackbar.service';
-import { Router } from '@angular/router';
 import { RoleEnum } from '@models/role.enum';
 
 describe('NoAuthGuard', () => {

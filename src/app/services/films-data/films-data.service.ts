@@ -3,9 +3,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
-import { Film } from '@models/film.interface';
-import { environment } from 'src/environments/environment';
 import { CacheService } from '@services/cache/cache.service';
+import { Film } from '@models/film.interface';
+
+import { environment } from '@environments/environment';
 
 @Injectable({
   providedIn: 'root'
